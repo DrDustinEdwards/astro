@@ -1,0 +1,47 @@
+---
+import "@fontsource/schibsted-grotesk/latin-400.css";
+import "@fontsource/schibsted-grotesk/latin-600.css";
+import "capsomer/tokens.css";
+import "capsomer/base.css";
+import "capsomer/prose.css";
+import Enhance from "enarratio-astro/Enhance.astro";
+
+interface Props {
+  title: string;
+  /** For Markdown pages with interactive charts: Markdown cannot add the script itself. */
+  enhance?: boolean;
+  frontmatter?: { title: string; enhance?: boolean };
+}
+
+const { title, enhance } = Astro.props.frontmatter ?? Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main>
+      <article data-context="prose">
+        <h1>{title}</h1>
+        <slot />
+      </article>
+    </main>
+    {enhance && <Enhance />}
+  </body>
+</html>
+
+<style>
+  main {
+    max-inline-size: 48rem;
+    margin-inline: auto;
+    padding: 2rem 1rem 4rem;
+  }
+  article :global(.enarratio-chart) {
+    margin-block: 2rem;
+  }
+</style>

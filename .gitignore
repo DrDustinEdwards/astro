@@ -11,3 +11,4 @@ demo/node_modules/
 demo/data.db*
 demo/uploads/
 demo/emdash-env.d.ts
+demo/.emdash

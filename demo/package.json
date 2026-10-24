@@ -2,7 +2,7 @@
   "name": "enarratio-emdash-demo",
   "private": true,
   "type": "module",
-  "description": "A one-post EmDash site that renders every kind of Chart block, for screenshots and the packaging check in CI",
+  "description": "A small EmDash site that renders every kind of chart: EmDash blocks, the Astro component and Markdown. For screenshots and the packaging check in CI",
   "emdash": {
     "seed": "seed/seed.json"
   },
@@ -23,5 +23,8 @@
   },
   "overrides": {
     "zod": "^4.6.6"
+  },
+  "devDependencies": {
+    "@astrojs/markdown-satteri": "0.4.5"
   }
 }

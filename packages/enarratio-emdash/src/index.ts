@@ -11,8 +11,7 @@ import type { PluginDescriptor, ResolvedPlugin } from "emdash";
 import { definePlugin } from "emdash";
 import { chartBlock } from "./block.js";
 
-export { BLOCK_TYPE, CHART_KINDS, type ChartKind, chartBlock } from "./block.js";
-export { type ChartNode, type ChartResult, renderChart } from "./chart.js";
+export { BLOCK_TYPE, type ChartNode, chartBlock } from "./block.js";
 
 /** Kept equal to package.json's version, which a test checks. */
 export const VERSION = "0.1.0";

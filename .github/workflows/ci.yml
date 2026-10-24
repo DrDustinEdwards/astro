@@ -24,17 +24,17 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm audit --audit-level=high
+      - run: npm run build
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
-      - run: npm run build
-      - run: npm pack --dry-run
+      - run: npm pack --dry-run --workspaces
 
   site:
-    # The packed tarball in a real EmDash site: install it as a site would, register it in
-    # astro.config.mjs, build, serve, and read the page. The only check that catches a missing
-    # export or a .astro file left out of the package (EmDash's "Distributing native plugins").
-    name: Build and serve the demo EmDash site from the packed plugin
+    # The packed tarballs in a real EmDash site: install them as a site would, build, serve, and
+    # read the EmDash post, the component page and the Markdown page. The only check that catches a
+    # missing export or a .astro file left out of a package (EmDash's "Distributing native plugins").
+    name: Build and serve the demo site from the packed packages
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
@@ -46,10 +46,11 @@ jobs:
             package-lock.json
             demo/package-lock.json
       - run: npm ci
-      - run: npm pack --pack-destination demo
+      - run: npm run build
+      - run: npm pack --workspaces --pack-destination demo
       - run: npm ci
         working-directory: demo
-      - run: npm install --no-save ./enarratio-emdash-*.tgz
+      - run: npm install --no-save ./enarratio-astro-*.tgz ./enarratio-emdash-*.tgz
         working-directory: demo
       - run: npm run setup
         working-directory: demo

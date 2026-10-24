@@ -3,9 +3,28 @@ import type { PortableTextBlockConfig } from "emdash";
 /** The Portable Text `_type` of a chart block, and the key of its renderer. */
 export const BLOCK_TYPE = "enarratioChart";
 
-/** The chart kinds the block draws. */
-export const CHART_KINDS = ["bar", "line", "area", "scatter", "heatmap"] as const;
-export type ChartKind = (typeof CHART_KINDS)[number];
+/** A saved Chart block: the editor form's values, every one optional until the chart is drawn. */
+export interface ChartNode {
+  readonly _type: string;
+  readonly _key?: string;
+  readonly chart?: string;
+  readonly title?: string;
+  readonly alt?: string;
+  readonly caption?: string;
+  readonly data?: string;
+  readonly x?: string;
+  readonly y?: string;
+  readonly series?: string;
+  readonly value?: string;
+  readonly xLabel?: string;
+  readonly yLabel?: string;
+  readonly layout?: string;
+  readonly orientation?: string;
+  readonly scale?: string;
+  readonly regression?: boolean;
+  readonly dataTable?: string;
+  readonly interactive?: boolean;
+}
 
 /**
  * The chart block as the editor shows it: one form, whose `action_id`s become the saved block's

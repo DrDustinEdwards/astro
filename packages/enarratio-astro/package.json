@@ -1,0 +1,66 @@
+{
+  "name": "enarratio-astro",
+  "version": "0.1.0",
+  "description": "Accessible charts for Astro: a Chart component and charts in Markdown, drawn on the server by Enarratio",
+  "keywords": [
+    "astro",
+    "astro-component",
+    "withastro",
+    "charts",
+    "accessibility",
+    "markdown",
+    "enarratio"
+  ],
+  "homepage": "https://github.com/DrDustinEdwards/astro/tree/main/packages/enarratio-astro#readme",
+  "bugs": {
+    "url": "https://github.com/DrDustinEdwards/astro/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrDustinEdwards/astro.git",
+    "directory": "packages/enarratio-astro"
+  },
+  "license": "MIT",
+  "author": "Dustin Edwards (https://dustinedwards.info)",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./markdown": {
+      "types": "./dist/markdown.d.ts",
+      "import": "./dist/markdown.js"
+    },
+    "./Chart.astro": "./src/Chart.astro",
+    "./Enhance.astro": "./src/Enhance.astro",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.16"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "astro": ">=6.0.0"
+  },
+  "dependencies": {
+    "@observablehq/plot": "0.6.17",
+    "enarratio": "0.3.1",
+    "linkedom": "0.18.13"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  }
+}

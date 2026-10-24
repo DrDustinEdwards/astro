@@ -124,3 +124,33 @@ export function column(table: Table, name: string | undefined, role: string): st
   }
   return found;
 }
+
+/** Reads one value from a row given as an object: dates as ISO text, true and false as text. */
+function value(raw: unknown): Cell {
+  if (raw === null || raw === undefined || raw === "") return null;
+  if (typeof raw === "number") return Number.isFinite(raw) ? raw : null;
+  if (typeof raw === "string") return raw;
+  if (raw instanceof Date) return raw.toISOString();
+  if (typeof raw === "boolean") return String(raw);
+  throw new Error(
+    `A value in the data is ${Array.isArray(raw) ? "a list" : "an object"}; use numbers or text.`,
+  );
+}
+
+/** Reads rows given as objects (from JSON or a content collection) into a table. */
+export function tableFromRows(input: readonly Readonly<Record<string, unknown>>[]): Table {
+  if (input.length === 0) throw new Error("Add data: at least one row.");
+  if (input.length > MAX_ROWS) throw new Error(`The data has more than ${MAX_ROWS} rows.`);
+  const columns: string[] = [];
+  for (const row of input) {
+    for (const key of Object.keys(row)) if (!columns.includes(key)) columns.push(key);
+  }
+  if (columns.length > MAX_COLUMNS)
+    throw new Error(`The data has more than ${MAX_COLUMNS} columns.`);
+  const rows = input.map((source) => {
+    const row: Record<string, Cell> = Object.create(null);
+    for (const name of columns) row[name] = value(source[name]);
+    return row;
+  });
+  return { columns, rows };
+}
