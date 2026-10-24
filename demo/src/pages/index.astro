@@ -1,0 +1,41 @@
+---
+import "@fontsource/schibsted-grotesk/latin-400.css";
+import "@fontsource/schibsted-grotesk/latin-600.css";
+import "capsomer/tokens.css";
+import "capsomer/base.css";
+import "capsomer/prose.css";
+import { getEmDashEntry } from "emdash";
+import { PortableText } from "emdash/ui";
+
+const { entry: post } = await getEmDashEntry("posts", "charts");
+if (!post) return Astro.rewrite("/404");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{post.data.title}</title>
+  </head>
+  <body>
+    <main>
+      <article data-context="prose">
+        <h1>{post.data.title}</h1>
+        <PortableText value={post.data.content} />
+      </article>
+    </main>
+  </body>
+</html>
+
+<style>
+  main {
+    max-inline-size: 48rem;
+    margin-inline: auto;
+    padding: 2rem 1rem 4rem;
+  }
+  article :global(.enarratio-emdash) {
+    margin-block: 2rem;
+  }
+</style>

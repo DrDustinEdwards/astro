@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    # Node 24, which sites run, and 26, the .nvmrc line. Astro needs 22.23.4 or later.
+    name: Typecheck, lint, tests, package (Node ${{ matrix.node }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [24, 26]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - run: npm pack --dry-run
+
+  site:
+    # The packed tarball in a real EmDash site: install it as a site would, register it in
+    # astro.config.mjs, build, serve, and read the page. The only check that catches a missing
+    # export or a .astro file left out of the package (EmDash's "Distributing native plugins").
+    name: Build and serve the demo EmDash site from the packed plugin
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            demo/package-lock.json
+      - run: npm ci
+      - run: npm pack --pack-destination demo
+      - run: npm ci
+        working-directory: demo
+      - run: npm install --no-save ./enarratio-emdash-*.tgz
+        working-directory: demo
+      - run: npm run setup
+        working-directory: demo
+      - run: npm run build
+        working-directory: demo
+      - run: node check.mjs
+        working-directory: demo

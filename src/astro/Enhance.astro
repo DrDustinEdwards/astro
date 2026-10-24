@@ -1,0 +1,20 @@
+---
+/**
+ * Loads Enarratio's enhancement layer for the charts marked interactive. Astro bundles this
+ * script once and adds it only to pages where an interactive chart renders, so pages without
+ * one stay script-free.
+ */
+---
+
+<script>
+  import { enhance } from "enarratio/enhance";
+
+  function run() {
+    for (const chart of document.querySelectorAll<HTMLElement>("[data-enarratio-emdash-interactive]")) {
+      enhance(chart);
+    }
+  }
+  run();
+  // Sites using Astro's client router swap pages without reloading; enhance() skips charts it has seen.
+  document.addEventListener("astro:page-load", run);
+</script>
