@@ -28,20 +28,22 @@ npm install enarratio-astro
 import Chart from "enarratio-astro/Chart.astro";
 
 const downloads = [
-  { month: "2026-05-01", package: "Core", downloads: 410 },
-  { month: "2026-06-01", package: "Core", downloads: 530 },
-  { month: "2026-05-01", package: "Plugin", downloads: 120 },
-  { month: "2026-06-01", package: "Plugin", downloads: 190 },
+  { year: 2024, package: "Core", downloads: 4100 },
+  { year: 2025, package: "Core", downloads: 5300 },
+  { year: 2026, package: "Core", downloads: 6100 },
+  { year: 2024, package: "Plugin", downloads: 1200 },
+  { year: 2025, package: "Plugin", downloads: 1900 },
+  { year: 2026, package: "Plugin", downloads: 2800 },
 ];
 ---
 <Chart
   type="line"
   data={downloads}
-  x="month"
+  x="year"
   y="downloads"
   series="package"
-  title="Monthly downloads"
-  alt="Monthly downloads in May and June 2026: the core grows from 410 to 530, the plugin from 120 to 190."
+  title="Downloads per year"
+  alt="Downloads per year, 2024 to 2026: the core grows from 4,100 to 6,100, the plugin from 1,200 to 2,800."
   interactive
 />
 ```
