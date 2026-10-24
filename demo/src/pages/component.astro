@@ -4,9 +4,15 @@ import Page from "../layouts/Page.astro";
 
 // Rows as objects, as from JSON or a content collection.
 const releases = [
+  { month: "2026-02-01", package: "Core", downloads: 250 },
+  { month: "2026-03-01", package: "Core", downloads: 300 },
+  { month: "2026-04-01", package: "Core", downloads: 340 },
   { month: "2026-05-01", package: "Core", downloads: 410 },
   { month: "2026-06-01", package: "Core", downloads: 530 },
   { month: "2026-07-01", package: "Core", downloads: 610 },
+  { month: "2026-02-01", package: "Plugin", downloads: 20 },
+  { month: "2026-03-01", package: "Plugin", downloads: 45 },
+  { month: "2026-04-01", package: "Plugin", downloads: 80 },
   { month: "2026-05-01", package: "Plugin", downloads: 120 },
   { month: "2026-06-01", package: "Plugin", downloads: 190 },
   { month: "2026-07-01", package: "Plugin", downloads: 280 },
@@ -23,7 +29,7 @@ const releases = [
     series="package"
     title="Monthly downloads"
     yLabel="Downloads"
-    alt="Monthly downloads, May to July 2026: the core grows from 410 to 610, the plugin from 120 to 280."
+    alt="Monthly downloads, February to July 2026: the core grows from 250 to 610, the plugin from 20 to 280."
     interactive
   />
 </Page>
