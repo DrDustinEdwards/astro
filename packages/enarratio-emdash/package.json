@@ -1,0 +1,62 @@
+{
+  "name": "enarratio-emdash",
+  "version": "0.1.0",
+  "description": "EmDash plugin: a Chart block for the Portable Text editor, drawn on the server by Enarratio as accessible HTML and SVG",
+  "keywords": [
+    "emdash",
+    "emdash-plugin",
+    "astro",
+    "charts",
+    "accessibility",
+    "enarratio"
+  ],
+  "license": "MIT",
+  "author": "Dustin Edwards (https://dustinedwards.info)",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./astro": "./src/astro/index.ts",
+    "./astro/base": "./src/astro/base.ts",
+    "./astro/none": "./src/astro/none.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.16"
+  },
+  "peerDependencies": {
+    "astro": ">=6.0.0",
+    "emdash": ">=1.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "homepage": "https://github.com/DrDustinEdwards/astro/tree/main/packages/enarratio-emdash#readme",
+  "bugs": {
+    "url": "https://github.com/DrDustinEdwards/astro/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrDustinEdwards/astro.git",
+    "directory": "packages/enarratio-emdash"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "enarratio-astro": "0.1.0"
+  }
+}

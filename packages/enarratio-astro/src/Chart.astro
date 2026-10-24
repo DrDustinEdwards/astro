@@ -1,0 +1,31 @@
+---
+/**
+ * A chart, drawn on the server when the page renders. The props are a ChartSpec (data, columns,
+ * text) plus `interactive` and the style options. The chart CSS is written once per page,
+ * whatever the number of charts.
+ *
+ * @example
+ * <Chart type="line" data={visits} x="month" y="visitors" series="site"
+ *   alt="Monthly visitors to the site and the docs: both rise, the docs fastest." />
+ */
+import type { ChartSpec } from "./chart.ts";
+import { renderChart } from "./chart.ts";
+import Enhance from "./Enhance.astro";
+import { chartMarkup } from "./figure.ts";
+import { firstOnPage } from "./once.ts";
+import { chartStyles, type StyleOptions } from "./styles.ts";
+
+interface Props extends ChartSpec, StyleOptions {
+  /** Hover details, keyboard navigation and filtering, from Enarratio's small enhancement script. */
+  interactive?: boolean;
+}
+
+const { interactive = false, styles, theme, stylesheetOptions, ...spec } = Astro.props;
+const result = await renderChart(spec);
+const css = firstOnPage(Astro.request) ? chartStyles({ styles, theme, stylesheetOptions }) : "";
+if (!result.ok) console.warn(`[enarratio-astro] chart ${spec.id ?? ""} not drawn: ${result.error}`);
+---
+
+{css && <style is:inline set:html={css} />}
+<Fragment set:html={chartMarkup(result, interactive)} />
+{interactive && result.ok && <Enhance />}

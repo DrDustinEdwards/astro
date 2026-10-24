@@ -1,0 +1,39 @@
+---
+/**
+ * Renders a saved Chart block with enarratio-astro's Chart. EmDash passes the block as `node`;
+ * the plugin's `styles` option picks the entry (astro, astro/base, astro/none) and so the `styles`
+ * prop. A site can also wrap this component to pass its own Enarratio theme, and register the
+ * wrapper through `<PortableText components={{ type: { enarratioChart: MyChart } }}>`.
+ */
+import type { StyleOptions } from "enarratio-astro";
+import Chart from "enarratio-astro/Chart.astro";
+import type { ChartNode } from "../block.ts";
+
+interface Props extends StyleOptions {
+  node: ChartNode;
+}
+
+const { node, ...style } = Astro.props;
+---
+
+<Chart
+  type={node.chart}
+  data={node.data ?? ""}
+  alt={node.alt}
+  title={node.title}
+  caption={node.caption}
+  x={node.x}
+  y={node.y}
+  series={node.series}
+  value={node.value}
+  xLabel={node.xLabel}
+  yLabel={node.yLabel}
+  layout={node.layout}
+  orientation={node.orientation}
+  scale={node.scale}
+  regression={node.regression}
+  dataTable={node.dataTable}
+  id={node._key ? `chart-${node._key}` : undefined}
+  interactive={node.interactive === true}
+  {...style}
+/>

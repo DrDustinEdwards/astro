@@ -1,0 +1,155 @@
+{
+  "$schema": "https://emdashcms.com/seed.schema.json",
+  "version": "1",
+  "meta": {
+    "name": "Enarratio charts demo",
+    "description": "One post showing every kind of Chart block",
+    "author": "Enarratio"
+  },
+  "settings": {
+    "title": "Enarratio charts for EmDash"
+  },
+  "collections": [
+    {
+      "slug": "posts",
+      "label": "Posts",
+      "labelSingular": "Post",
+      "urlPattern": "/{slug}",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "slug": "content",
+          "label": "Content",
+          "type": "portableText"
+        }
+      ]
+    }
+  ],
+  "content": {
+    "posts": [
+      {
+        "id": "post-charts",
+        "slug": "charts",
+        "status": "published",
+        "data": {
+          "title": "Charts in EmDash",
+          "content": [
+            {
+              "_type": "block",
+              "_key": "p1",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "p1s",
+                  "text": "Every chart on this page is a Chart block typed into the EmDash editor: pasted data, a sentence describing it, and the columns to plot. Enarratio draws each one on the server, so it is complete before any script runs and carries a data table.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "enarratioChart",
+              "_key": "c1",
+              "chart": "bar",
+              "title": "Outputs per year",
+              "alt": "Outputs per year by type, 2022 to 2025: three to four a year, with talks peaking in 2024.",
+              "data": "year,type\n2022,Paper\n2022,Talk\n2023,Paper\n2023,Paper\n2023,Talk\n2023,Grant\n2024,Paper\n2024,Talk\n2024,Talk\n2024,Talk\n2025,Paper\n2025,Paper\n2025,Grant\n2025,Talk",
+              "x": "year",
+              "series": "type",
+              "yLabel": "Outputs",
+              "caption": "Rows are counted: one row per output.",
+              "layout": "stacked",
+              "orientation": "vertical",
+              "dataTable": "details"
+            },
+            {
+              "_type": "enarratioChart",
+              "_key": "c2",
+              "chart": "line",
+              "title": "Monthly visitors",
+              "alt": "Monthly visitors to the main site and the docs, January to June 2026: both rise, the docs fastest.",
+              "data": "month,site,visitors\n2026-01-01,Main site,820\n2026-01-01,Docs,310\n2026-02-01,Main site,870\n2026-02-01,Docs,350\n2026-03-01,Main site,990\n2026-03-01,Docs,420\n2026-04-01,Main site,1040\n2026-04-01,Docs,515\n2026-05-01,Main site,1110\n2026-05-01,Docs,560\n2026-06-01,Main site,1190\n2026-06-01,Docs,640",
+              "x": "month",
+              "y": "visitors",
+              "series": "site",
+              "yLabel": "Visitors",
+              "dataTable": "details",
+              "interactive": true
+            },
+            {
+              "_type": "enarratioChart",
+              "_key": "c3",
+              "chart": "area",
+              "title": "Electricity by source",
+              "alt": "Share of electricity by source, 2020 to 2025: renewables grow from 25 to 43 percent as coal falls.",
+              "data": "year\tsource\tshare\n2020\tCoal\t40\n2020\tGas\t35\n2020\tRenewables\t25\n2021\tCoal\t37\n2021\tGas\t36\n2021\tRenewables\t27\n2022\tCoal\t33\n2022\tGas\t37\n2022\tRenewables\t30\n2023\tCoal\t30\n2023\tGas\t36\n2023\tRenewables\t34\n2024\tCoal\t26\n2024\tGas\t36\n2024\tRenewables\t38\n2025\tCoal\t22\n2025\tGas\t35\n2025\tRenewables\t43",
+              "x": "year",
+              "y": "share",
+              "series": "source",
+              "yLabel": "Share (%)",
+              "caption": "Pasted from a spreadsheet, so the data are tab-separated. Sample data.",
+              "dataTable": "details"
+            },
+            {
+              "_type": "enarratioChart",
+              "_key": "c4",
+              "chart": "scatter",
+              "title": "Dose and response",
+              "alt": "Response rises in a straight line with dose, about two units per unit of dose.",
+              "data": "dose,response\n1,2.1\n2,3.9\n3,6.2\n4,7.8\n5,10.4\n6,11.9\n7,14.3\n8,15.8\n9,18.4\n10,19.7",
+              "x": "dose",
+              "y": "response",
+              "xLabel": "Dose (mg)",
+              "yLabel": "Response",
+              "regression": true,
+              "dataTable": "details"
+            },
+            {
+              "_type": "enarratioChart",
+              "_key": "c5",
+              "chart": "heatmap",
+              "title": "Messages by day and time",
+              "alt": "Messages are busiest on weekday afternoons, peaking on Wednesday, and quietest on Friday evenings.",
+              "data": "day,time,messages\nMon,Morning,12\nMon,Afternoon,18\nMon,Evening,6\nTue,Morning,15\nTue,Afternoon,22\nTue,Evening,8\nWed,Morning,14\nWed,Afternoon,25\nWed,Evening,9\nThu,Morning,16\nThu,Afternoon,21\nThu,Evening,7\nFri,Morning,10\nFri,Afternoon,14\nFri,Evening,4",
+              "x": "time",
+              "y": "day",
+              "value": "messages",
+              "dataTable": "details",
+              "interactive": true
+            },
+            {
+              "_type": "enarratioChart",
+              "_key": "c6",
+              "chart": "bar",
+              "title": "Repositories by language",
+              "alt": "Most repositories are TypeScript: nine of fifteen.",
+              "data": "language;repositories\nTypeScript;9\nPython;3\nR;2\nShell;1",
+              "x": "language",
+              "y": "repositories",
+              "orientation": "horizontal",
+              "dataTable": "details",
+              "interactive": true
+            },
+            {
+              "_type": "enarratioChart",
+              "_key": "c7",
+              "chart": "line",
+              "title": "A block with a mistake",
+              "alt": "Profit by month.",
+              "data": "month,site,visitors\n2026-01-01,Main site,820\n2026-01-01,Docs,310\n2026-02-01,Main site,870\n2026-02-01,Docs,350\n2026-03-01,Main site,990\n2026-03-01,Docs,420\n2026-04-01,Main site,1040\n2026-04-01,Docs,515\n2026-05-01,Main site,1110\n2026-05-01,Docs,560\n2026-06-01,Main site,1190\n2026-06-01,Docs,640",
+              "x": "month",
+              "y": "profit"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

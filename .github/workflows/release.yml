@@ -1,0 +1,95 @@
+name: Release
+
+# A release is the merge of a package's version bump. For each package under packages/, in
+# dependency order (enarratio-astro, then enarratio-emdash), when its package.json version on main
+# has no <package>@<version> tag yet, the job tags that commit, publishes a GitHub release with the
+# version's CHANGELOG section, and stages the package on npm unless npm already has that version (a
+# first version is published by hand). Run it by hand (Actions > Release > Run workflow) for a
+# version that merged untagged.
+#
+# Tagging and staging are one job: a tag made with the workflow's token starts no other workflow
+# (GitHub's rule against loops), and npm accepts the publish only from this file.
+#
+# Nothing goes live here: the job runs `npm stage publish`, and the version stays hidden until a
+# maintainer approves it with 2FA on npmjs.com (Staged Packages tab) or with `npm stage approve`.
+# Steps for a release: docs/releasing.md.
+#
+# Authentication is npm trusted publishing (OIDC): no npm token is stored anywhere. npm accepts the
+# publish only from this file, by name, as configured on each package's npm settings page, so
+# renaming this file breaks releases until that setting is changed too. Provenance is generated
+# automatically for a trusted publish from a public repository; it is also set explicitly below.
+# npm's documentation: https://docs.npmjs.com/trusted-publishers and
+# https://docs.npmjs.com/staged-publishing (npm CLI 11.15.0 or later, Node.js 22.14.0 or later).
+
+on:
+  push:
+    branches: [main]
+    paths: ["packages/*/package.json"]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: npm-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Tag, release and stage changed packages
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      # Lets the job request the OIDC token that npm exchanges for a short-lived publish token.
+      id-token: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      # No dependency cache in a release build (npm's trusted publishing guide).
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+      - name: Install the npm CLI that supports staged publishing
+        run: npm install --global npm@11.21.0
+      - run: npm ci
+      - run: npm run check
+      - name: Tag, release and stage
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NPM_CONFIG_PROVENANCE: "true"
+        run: |
+          for dir in packages/enarratio-astro packages/enarratio-emdash; do
+            name="$(node -p "require('./$dir/package.json').name")"
+            version="$(node -p "require('./$dir/package.json').version")"
+            tag="$name@$version"
+            if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
+              echo "$tag already exists; nothing to release."
+              continue
+            fi
+            # The version's own CHANGELOG section, from its heading to the next one.
+            awk -v v="$version" '
+              index($0, "## [" v "]") == 1 { on = 1; next }
+              on && /^## \[/ { exit }
+              on { print }
+            ' "$dir/CHANGELOG.md" > notes.md
+            if [ ! -s notes.md ]; then
+              echo "::error::$dir/CHANGELOG.md has no section headed ## [$version]. Add it before bumping the version."
+              exit 1
+            fi
+            gh release create "$tag" --target "$GITHUB_SHA" --title "$tag" --notes-file notes.md
+            if npm view "$tag" version >/dev/null 2>&1; then
+              echo "npm already has $tag (published by hand); not staging it."
+              continue
+            fi
+            # The dist-tag is fixed once staged, so it is passed explicitly from publishConfig.
+            dist_tag="$(node -p "require('./$dir/package.json').publishConfig.tag")"
+            (cd "$dir" && npm stage publish --tag "$dist_tag")
+            {
+              echo "### $tag staged on npm, not yet live"
+              echo
+              echo "Sign in at https://www.npmjs.com, open the Staged Packages tab and approve it, or run"
+              echo "\`npm stage list $name\` and \`npm stage approve <stage-id>\`. Steps: docs/releasing.md."
+            } >> "$GITHUB_STEP_SUMMARY"
+          done

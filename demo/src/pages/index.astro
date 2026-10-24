@@ -1,0 +1,12 @@
+---
+import { getEmDashEntry } from "emdash";
+import { PortableText } from "emdash/ui";
+import Page from "../layouts/Page.astro";
+
+const { entry: post } = await getEmDashEntry("posts", "charts");
+if (!post) return Astro.rewrite("/404");
+---
+
+<Page title={post.data.title}>
+  <PortableText value={post.data.content} />
+</Page>
