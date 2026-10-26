@@ -52,7 +52,7 @@
     "prepare": "npm run build"
   },
   "peerDependencies": {
-    "astro": ">=6.0.0"
+    "astro": "7.4.2"
   },
   "dependencies": {
     "@observablehq/plot": "0.6.17",
