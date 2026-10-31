@@ -95,9 +95,9 @@ plugin's:
 ---
 // src/components/SiteChart.astro
 import { Chart } from "enarratio-emdash/astro";
-import { labTheme } from "../lab-theme";
+import { siteTheme } from "../site-theme";
 ---
-<Chart node={Astro.props.node} theme={labTheme} stylesheetOptions={{ colorScheme: { dark: '[data-theme="dark"]' } }} />
+<Chart node={Astro.props.node} theme={siteTheme} stylesheetOptions={{ colorScheme: { dark: '[data-theme="dark"]' } }} />
 ```
 
 ```astro
