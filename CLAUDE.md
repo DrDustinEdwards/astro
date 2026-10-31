@@ -1,6 +1,6 @@
 # CLAUDE.md - astro
 
-Dustin's packages for Astro and EmDash sites, an npm workspace under `packages/`, each published to npm on its own: `enarratio-astro` (charts in Astro pages and Markdown) and `enarratio-emdash` (the EmDash Chart block, built on enarratio-astro). Public MIT repo, separate from Enarratio so Enarratio's JOSS submission stays Enarratio alone. `README.md` and each package's README are how it works. Before writing anything another site might have, read what the family shares: https://github.com/DrDustinEdwards/devkit/blob/shared-list/SHARED.md (CI's family check fails on a copy).
+Dustin's packages for Astro and EmDash sites, an npm workspace under `packages/`, each published to npm on its own: `enarratio-astro` (charts in Astro pages and Markdown) and `enarratio-emdash` (the EmDash Chart block, built on enarratio-astro). Public MIT repo, separate from Enarratio so Enarratio's JOSS submission stays Enarratio alone. `README.md` and each package's README are how it works. Before writing anything another site might have, read what the sites share: https://github.com/DrDustinEdwards/devkit/blob/shared-list/SHARED.md (CI's shared-code check fails on a copy).
 
 ## Rules
 

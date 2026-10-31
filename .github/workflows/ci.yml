@@ -7,6 +7,11 @@ on:
 permissions:
   contents: read
 
+# A newer push to a pull request cancels its older run; a push to the default branch never does.
+concurrency:
+  group: ci-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   check:
     # Node 24, which sites run, and 26, the .nvmrc line. Astro needs 22.23.4 or later.
