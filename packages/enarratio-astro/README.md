@@ -107,12 +107,16 @@ The component's props and a Markdown block's keys are the same:
 | `type` | all | `bar` (default), `line`, `area` (stacked), `scatter` or `heatmap`. |
 | `data` | all | The data (component only; in Markdown it follows the dashes). Up to 5000 rows and 50 columns. |
 | `alt` | all | **Required.** What the chart shows and finds, in a sentence. It names the chart for screen readers. |
-| `title`, `caption` | all | Optional. The caption is for source, method or caveats. |
+| `title`, `subtitle` | all | Optional. Shown above the chart. |
+| `caption`, `notes` | all | Optional. The caption, under the chart, is for method or caveats; notes are a smaller line for definitions. |
+| `source`, `sourceHref` | all | Optional. Where the data came from, linked when `sourceHref` is set, beside a CSV download of the data. |
+| `byline` | all | Optional. Who made the chart. |
 | `x` | all | The column along the x axis. Column names match without regard to case. ISO dates make a time axis in line and area charts. |
 | `y` | all | The value column. Bar charts count rows when it is missing. For a heatmap, the row column. |
 | `series` | bar, line, area, scatter | Splits rows into series, told apart by color and by legend, labels or symbols. |
 | `value` | heatmap | The cell value column. |
 | `xLabel`, `yLabel` | all | Axis labels. |
+| `xUnit`, `yUnit` | all | Optional. The unit, shown after the axis label (`Sales (units)`) and in the table and summary. |
 | `layout` | bar | `stacked` (default) or `grouped`. |
 | `orientation` | bar | `vertical` (default) or `horizontal`. |
 | `scale` | line, scatter | `linear` (default) or `log`. |

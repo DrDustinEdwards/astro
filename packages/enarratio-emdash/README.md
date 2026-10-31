@@ -54,14 +54,16 @@ it only reads the block an editor saved and draws it.
 | Field | Used by | Notes |
 |---|---|---|
 | Chart | all | Bar, Line, Area (stacked), Scatter or Heatmap. |
-| Title | all | Shown above the chart. Optional. |
+| Title, subtitle | all | Shown above the chart. Optional. |
 | Description | all | **Required.** What the chart shows and finds, in a sentence. It names the chart for screen readers. |
 | Data | all | CSV, semicolon-separated, or pasted from a spreadsheet (tab-separated). The first row names the columns. Numbers such as `1,234` (quoted in CSV) are read as numbers; an empty cell is a gap. Up to 5000 rows and 50 columns. |
 | Column along the x axis | all | Column names match without regard to case. Line and area charts read ISO dates (`2026-03-01`) as a time axis. |
 | Column of values (y) | all | Bar charts count rows when it is blank. For a heatmap, the row column. |
 | Series column | bar, line, area, scatter | Splits rows into series, told apart by color and by legend, labels or symbols. |
 | Heatmap: column of cell values | heatmap | |
-| Axis labels, caption | all | Optional. The caption is for source, method or caveats. |
+| Axis labels and units | all | Optional. A unit shows after its axis label. |
+| Caption, notes | all | Optional. The caption is for method or caveats; notes are for definitions. |
+| Source, source link, byline | all | Optional. The source line, linked when a link is given, sits beside a CSV download of the data. |
 | Bar: several series, direction | bar | Stacked or side by side; vertical or horizontal. |
 | y scale | line, scatter | Linear or logarithmic. |
 | Regression | scatter | Least-squares line with its 95% confidence band. |
