@@ -7,6 +7,19 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-31
+
+### Changed
+
+- Draws with Enarratio 0.4.0: a head with the title and the finding, a summary under the chart, a
+  CSV download, and wide charts that scroll sideways on a phone. The base styles now set system
+  colors under forced colors.
+
+### Added
+
+- `subtitle`, `notes`, `source`, `sourceHref`, `byline`, `xUnit` and `yUnit`, as props and as
+  Markdown keys.
+
 ## [0.1.0] - 2026-10-24
 
 ### Added

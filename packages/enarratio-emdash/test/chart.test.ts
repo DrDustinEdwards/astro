@@ -27,8 +27,13 @@ describe("the Chart block", () => {
       _key: "k1",
       chart: "bar",
       title: "Sales",
+      subtitle: "January, two regions",
       alt: "Sales by region.",
       caption: "Sample data.",
+      notes: "A sale counts when it is paid.",
+      source: "Sample ledger",
+      sourceHref: "https://example.com/ledger",
+      byline: "Sample team",
       data: "region,month,sales\nNorth,Jan,12\nSouth,Jan,9",
       x: "region",
       y: "sales",
@@ -36,6 +41,8 @@ describe("the Chart block", () => {
       value: "",
       xLabel: "Region",
       yLabel: "Sales",
+      xUnit: "",
+      yUnit: "units",
       layout: "grouped",
       orientation: "horizontal",
       scale: "linear",
@@ -54,6 +61,8 @@ describe("the Chart block", () => {
     expect(html).toContain('id="chart-k1"');
     expect(html).toContain('data-enarratio-orientation="horizontal"');
     expect(html).toContain("Sample data.");
+    expect(html).toContain('<a href="https://example.com/ledger">Sample ledger</a>');
+    expect(html).toContain("Sales (units)");
     expect(html).toContain("enarratio-visually-hidden");
     expect(html).toContain("data-enarratio-interactive-chart");
   });

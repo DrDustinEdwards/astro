@@ -51,7 +51,8 @@ describe("<Chart>", () => {
     expect(second).toContain("<svg");
     const base = await render({ ...props, styles: "base" });
     expect(base).toContain("Enarratio base rules");
-    expect(base).not.toContain("--enarratio-series-1:");
+    // The base rules set system colors only, for forced colors; a theme's hex colors are not in them.
+    expect(base).not.toMatch(/--enarratio-series-1:\s*#/);
     expect(await render({ ...props, styles: "none" })).not.toContain("<style");
   });
 

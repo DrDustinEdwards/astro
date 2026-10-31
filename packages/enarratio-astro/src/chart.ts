@@ -21,8 +21,18 @@ export interface ChartSpec {
   /** Required: what the chart shows and finds, in a sentence. Names the chart for screen readers. */
   readonly alt?: string | undefined;
   readonly title?: string | undefined;
-  /** Source, method or caveats, below the chart. */
+  /** A line under the title saying what the chart shows or how to read it. */
+  readonly subtitle?: string | undefined;
+  /** Method or caveats, below the chart. */
   readonly caption?: string | undefined;
+  /** Notes under the chart: what a measure means, what was left out. */
+  readonly notes?: string | undefined;
+  /** Where the data come from, in the source line beside the CSV download. */
+  readonly source?: string | undefined;
+  /** A link for the source (https). */
+  readonly sourceHref?: string | undefined;
+  /** Who made the chart, in the source line. */
+  readonly byline?: string | undefined;
   /** The column along the x axis. Column names match without regard to case. */
   readonly x?: string | undefined;
   /** The value column. Bar charts count rows without one; for a heatmap, the row column. */
@@ -33,6 +43,9 @@ export interface ChartSpec {
   readonly value?: string | undefined;
   readonly xLabel?: string | undefined;
   readonly yLabel?: string | undefined;
+  /** Units added to the axis labels and table headers: "Weight (kg)". */
+  readonly xUnit?: string | undefined;
+  readonly yUnit?: string | undefined;
   /** Bar: series stacked (default) or side by side ("grouped"). */
   readonly layout?: string | undefined;
   /** Bar: "vertical" (default) or "horizontal". */
@@ -80,16 +93,21 @@ function figure(spec: ChartSpec) {
   const alt = text(spec.alt);
   if (!alt) throw new Error("Add a description (alt): one sentence on what the chart shows.");
   const title = text(spec.title);
-  const caption = text(spec.caption);
-  const xLabel = text(spec.xLabel);
-  const yLabel = text(spec.yLabel);
+  const source = text(spec.source);
+  const sourceHref = text(spec.sourceHref);
+  if (sourceHref && !source)
+    throw new Error("Name the source (source) that the link (sourceHref) goes to.");
   const id = text(spec.id)?.replace(/[^A-Za-z0-9_-]/g, "");
+  const optional = Object.fromEntries(
+    (["subtitle", "caption", "notes", "byline", "xLabel", "yLabel", "xUnit", "yUnit"] as const)
+      .map((key) => [key, text(spec[key])])
+      .filter(([, value]) => value !== undefined),
+  );
   return {
     alt,
     ...(title ? { title } : {}),
-    ...(caption ? { caption } : {}),
-    ...(xLabel ? { xLabel } : {}),
-    ...(yLabel ? { yLabel } : {}),
+    ...optional,
+    ...(source ? { source: sourceHref ? { name: source, href: sourceHref } : source } : {}),
     ...(id ? { id } : {}),
     dataTable:
       spec.dataTable === "visually-hidden" ? ("visually-hidden" as const) : ("details" as const),

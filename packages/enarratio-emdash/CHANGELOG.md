@@ -7,6 +7,19 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-31
+
+### Changed
+
+- Draws with enarratio-astro 0.2.0 (Enarratio 0.4.0): a head with the title and the finding, a
+  summary under the chart, a CSV download, and wide charts that scroll sideways on a phone. The
+  caption field is now labeled for method or caveats; the source has its own field.
+
+### Added
+
+- Fields `subtitle`, `notes`, `source`, `sourceHref`, `byline`, `xUnit` and `yUnit`. Blocks saved by
+  0.1.0 draw as before.
+
 ## [0.1.0] - 2026-10-24
 
 ### Added
