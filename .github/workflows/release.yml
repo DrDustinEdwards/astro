@@ -4,7 +4,8 @@ name: Release
 # dependency order (enarratio-astro, then enarratio-emdash), when its package.json version on main
 # has no <package>@<version> tag yet, the job tags that commit, publishes a GitHub release with the
 # version's CHANGELOG section, and stages the package on npm unless npm already has that version (a
-# first version is published by hand). Run it by hand (Actions > Release > Run workflow) for a
+# first version is published by hand). A version tagged earlier whose stage npm refused is staged again, if its package is unchanged
+# since the tag. Run it by hand (Actions > Release > Run workflow) for a
 # version that merged untagged.
 #
 # Tagging and staging are one job: a tag made with the workflow's token starts no other workflow
@@ -65,20 +66,30 @@ jobs:
             version="$(node -p "require('./$dir/package.json').version")"
             tag="$name@$version"
             if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
-              echo "$tag already exists; nothing to release."
-              continue
+              if npm view "$tag" version >/dev/null 2>&1; then
+                echo "$tag already exists and is on npm; nothing to release."
+                continue
+              fi
+              # Tagged but never on npm (a refused stage): stage it again, if the package is unchanged since the tag.
+              git fetch --quiet --depth=1 origin "refs/tags/$tag:refs/tags/$tag"
+              if ! git diff --quiet "$tag" HEAD -- "$dir"; then
+                echo "::error::$tag is tagged but not on npm, and $dir changed since the tag. Bump the version to release it."
+                exit 1
+              fi
+              echo "$tag is tagged but not on npm; staging it again."
+            else
+              # The version's own CHANGELOG section, from its heading to the next one.
+              awk -v v="$version" '
+                index($0, "## [" v "]") == 1 { on = 1; next }
+                on && /^## \[/ { exit }
+                on { print }
+              ' "$dir/CHANGELOG.md" > notes.md
+              if [ ! -s notes.md ]; then
+                echo "::error::$dir/CHANGELOG.md has no section headed ## [$version]. Add it before bumping the version."
+                exit 1
+              fi
+              gh release create "$tag" --target "$GITHUB_SHA" --title "$tag" --notes-file notes.md
             fi
-            # The version's own CHANGELOG section, from its heading to the next one.
-            awk -v v="$version" '
-              index($0, "## [" v "]") == 1 { on = 1; next }
-              on && /^## \[/ { exit }
-              on { print }
-            ' "$dir/CHANGELOG.md" > notes.md
-            if [ ! -s notes.md ]; then
-              echo "::error::$dir/CHANGELOG.md has no section headed ## [$version]. Add it before bumping the version."
-              exit 1
-            fi
-            gh release create "$tag" --target "$GITHUB_SHA" --title "$tag" --notes-file notes.md
             if npm view "$tag" version >/dev/null 2>&1; then
               echo "npm already has $tag (published by hand); not staging it."
               continue
