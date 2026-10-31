@@ -7,6 +7,13 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-31
+
+### Changed
+
+- Draws with Enarratio 0.4.1: capitalized summaries, ranges said with their unit, day ticks for
+  whole-day data, and linked bars whose links sit in the data table.
+
 ## [0.2.0] - 2026-10-31
 
 ### Changed
