@@ -1,6 +1,6 @@
 {
   "name": "enarratio-emdash",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "EmDash plugin: a Chart block for the Portable Text editor, drawn on the server by Enarratio as accessible HTML and SVG",
   "keywords": [
     "emdash",
@@ -57,6 +57,6 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "enarratio-astro": "0.2.1"
+    "enarratio-astro": "0.3.0"
   }
 }
