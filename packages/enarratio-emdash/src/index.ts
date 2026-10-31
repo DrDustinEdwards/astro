@@ -14,7 +14,7 @@ import { chartBlock } from "./block.js";
 export { BLOCK_TYPE, type ChartNode, chartBlock } from "./block.js";
 
 /** Kept equal to package.json's version, which a test checks. */
-export const VERSION = "0.2.1";
+export const VERSION = "0.3.0";
 const ID = "enarratio";
 
 /** Options for {@link enarratioPlugin}. */

@@ -7,8 +7,13 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-31
+
 ### Changed
 
+- Built on enarratio-astro 0.3.0 (Enarratio 0.5.0). No block field changes.
+- First release on npm since 0.1.0: 0.2.0 and 0.2.1 never reached npm, because trusted publishing was not yet
+  set up.
 - The Data field's placeholder example and the README's theme example use neutral names.
 
 ## [0.2.1] - 2026-10-31
