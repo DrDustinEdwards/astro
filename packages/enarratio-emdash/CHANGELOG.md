@@ -7,6 +7,12 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-31
+
+### Changed
+
+- Built on enarratio-astro 0.2.1 (Enarratio 0.4.1).
+
 ## [0.2.0] - 2026-10-31
 
 ### Changed
