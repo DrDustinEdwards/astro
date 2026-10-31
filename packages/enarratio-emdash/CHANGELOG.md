@@ -7,6 +7,10 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+### Changed
+
+- The Data field's placeholder example and the README's theme example use neutral names.
+
 ## [0.2.1] - 2026-10-31
 
 ### Changed

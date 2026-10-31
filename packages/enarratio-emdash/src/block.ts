@@ -75,7 +75,7 @@ export const chartBlock: PortableTextBlockConfig = {
       action_id: "data",
       label: "Data",
       placeholder:
-        "Paste from a spreadsheet or type CSV. The first row names the columns.\nyear,type,count\n2024,Talks,3",
+        "Paste from a spreadsheet or type CSV. The first row names the columns.\nyear,type,count\n2024,Guides,3",
       multiline: true,
     },
     { type: "text_input", action_id: "x", label: "Column along the x axis" },
