@@ -50,10 +50,14 @@ jobs:
         with:
           persist-credentials: false
       # No dependency cache in a release build (npm's trusted publishing guide).
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      # v7, as Enarratio's release: setup-node v4 exports NODE_AUTH_TOKEN as a placeholder
+      # (XXXXX-XXXXX-XXXXX-XXXXX) when no token is given, and the .npmrc it writes for registry-url sends it
+      # in place of the trusted-publishing token, so npm answered E401 to every stage (0.2.0, 0.2.1, 0.3.0).
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
+          package-manager-cache: false
       - name: Install the npm CLI that supports staged publishing
         run: npm install --global npm@11.21.0
       - run: npm ci
