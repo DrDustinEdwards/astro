@@ -100,6 +100,8 @@ jobs:
             # The dist-tag is fixed once staged, so it is passed explicitly from publishConfig.
             dist_tag="$(node -p "require('./$dir/package.json').publishConfig.tag")"
             (cd "$dir" && npm stage publish --tag "$dist_tag")
+            # npm pack writes into an existing folder only.
+            mkdir -p "$RUNNER_TEMP/pack"
             (cd "$dir" && npm pack --ignore-scripts --pack-destination "$RUNNER_TEMP/pack")
             echo "packed=true" >> "$GITHUB_OUTPUT"
             {
