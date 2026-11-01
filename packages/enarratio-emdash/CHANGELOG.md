@@ -7,6 +7,11 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+### Release
+
+- Each release's `npm pack` tarball gets a GitHub artifact attestation beside npm's provenance:
+  `gh attestation verify enarratio-emdash-<version>.tgz --repo DrDustinEdwards/astro` checks a download.
+
 ## [0.3.0] - 2026-10-31
 
 ### Changed
