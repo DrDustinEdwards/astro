@@ -7,7 +7,15 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-01
+
+### Changed
+
+- Built on enarratio-astro 0.4.0 (Enarratio 0.7.0). No block field changes.
+
 ### Release
+
+- Staging works: the release job's setup-node moves from v4 to v7 (see enarratio-astro 0.4.0).
 
 - Each release's `npm pack` tarball gets a GitHub artifact attestation beside npm's provenance:
   `gh attestation verify enarratio-emdash-<version>.tgz --repo DrDustinEdwards/astro` checks a download.

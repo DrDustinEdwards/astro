@@ -7,7 +7,17 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-01
+
+### Changed
+
+- Draws with Enarratio 0.7.0 (0.6.0's phone drawings and Play as sound, and 0.7.0's tactile SVG download and
+  forced-colors legend swatches).
+
 ### Release
+
+- Staging works: the release job's setup-node moves from v4 to v7, whose v4 placeholder `NODE_AUTH_TOKEN` was sent
+  in place of the trusted-publishing token (E401 on 0.2.0, 0.2.1 and 0.3.0, so 0.1.0 is the newest on npm).
 
 - Each release's `npm pack` tarball gets a GitHub artifact attestation beside npm's provenance:
   `gh attestation verify enarratio-astro-<version>.tgz --repo DrDustinEdwards/astro` checks a download.
