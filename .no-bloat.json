@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "measured_at": "2ed80dd",
+    "knip": {
+      "Unused files": 5,
+      "Unused dependencies": 1,
+      "Unused devDependencies": 1,
+      "Unused exports": 2,
+      "Duplicate exports": 1
+    },
+    "jscpd": {
+      "clones": 0,
+      "lines": 0,
+      "percentage": 0
+    },
+    "tests": {
+      "files": 4,
+      "cases": 13
+    },
+    "comments": {
+      "lines": 183,
+      "code": 933,
+      "percentage": 16.4
+    }
+  }
+}
