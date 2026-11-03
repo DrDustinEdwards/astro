@@ -7,8 +7,11 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-11-03
+
 ### Changed
 
+- Draws with enarratio-astro 0.4.1 (Enarratio 0.7.2: timeline text never renders under 12 px).
 - Requires Node.js 22.22 or later (was 22.16), the floor Astro 7.4 sets.
 
 ## [0.4.0] - 2026-11-01
