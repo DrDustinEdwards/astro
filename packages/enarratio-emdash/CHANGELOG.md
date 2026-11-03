@@ -7,6 +7,13 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-11-03
+
+### Changed
+
+- Draws with enarratio-astro 0.4.2 (Enarratio 0.7.3: a chart no longer moves the page when the enhancement layer
+  loads, and a block that is not interactive shows no controls waiting for it). No block field changes.
+
 ## [0.4.1] - 2026-11-03
 
 ### Changed

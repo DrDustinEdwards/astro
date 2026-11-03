@@ -21,7 +21,7 @@ interface Props extends ChartSpec, StyleOptions {
 }
 
 const { interactive = false, styles, theme, stylesheetOptions, ...spec } = Astro.props;
-const result = await renderChart(spec);
+const result = await renderChart(spec, { interactive });
 const css = firstOnPage(Astro.request) ? chartStyles({ styles, theme, stylesheetOptions }) : "";
 if (!result.ok) console.warn(`[enarratio-astro] chart ${spec.id ?? ""} not drawn: ${result.error}`);
 ---

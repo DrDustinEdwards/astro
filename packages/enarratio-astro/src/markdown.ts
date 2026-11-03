@@ -78,7 +78,7 @@ async function chartHtml(
   let markup: string;
   try {
     const { interactive, ...spec } = parseChartBlock(source);
-    const result = await renderChart(spec);
+    const result = await renderChart(spec, { interactive });
     if (!result.ok) console.warn(`[enarratio-astro] Markdown chart not drawn: ${result.error}`);
     markup = chartMarkup(result, interactive);
   } catch (error) {
