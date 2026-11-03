@@ -56,10 +56,16 @@ describe("<Chart>", () => {
     expect(await render({ ...props, styles: "none" })).not.toContain("<style");
   });
 
-  it("adds the enhancement script only to an interactive chart", async () => {
+  it("adds the enhancement script, and its controls ahead of it, only to an interactive chart", async () => {
     const html = await render({ data: sales, x: "region", alt: "Rows.", interactive: true });
     expect(html).toContain("data-enarratio-interactive-chart");
     expect(html).toContain("<script");
+    const pending = /<[^>]+\sdata-enarratio-pending/;
+    expect(html).toMatch(pending);
+    // A chart that is never enhanced has no inert controls waiting for a layer that never comes.
+    const still = await render({ data: sales, x: "region", alt: "Rows." });
+    expect(still).not.toContain("<script");
+    expect(still).not.toMatch(pending);
   });
 
   it("escapes markup an author typed, in data and in text", async () => {

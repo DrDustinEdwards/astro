@@ -10,6 +10,7 @@ export {
   type ChartResult,
   type ChartSpec,
   type ChartType,
+  type RenderOptions,
   renderChart,
 } from "./chart.js";
 export { type Cell, parseTable, type Table, tableFromRows } from "./data.js";

@@ -7,6 +7,18 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-11-03
+
+### Changed
+
+- Draws with Enarratio 0.7.3: charts no longer move the page when the enhancement layer loads. The redraw keeps the
+  height the server drawing showed, a legend entry has its button's box before it is a button, and an interactive
+  chart's figure holds the controls the layer adds (Show table, Play as sound, the downloads), inert until it
+  arrives.
+- A chart that is not interactive leaves those controls out (Enarratio's `controls: false`), since no layer ever
+  makes them work. `renderChart` takes a second argument, `{ interactive }`, for this; it defaults to true, as
+  Enarratio does.
+
 ## [0.4.1] - 2026-11-03
 
 ### Changed

@@ -88,8 +88,18 @@ function numeric(table: Table, name: string): void {
   if (bad) throw new Error(`The column "${name}" should hold numbers, but has "${bad[name]}".`);
 }
 
-/** The options every chart type shares: text, the data table and the id. */
-function figure(spec: ChartSpec) {
+/** How a chart is drawn, beside what it shows. */
+export interface RenderOptions {
+  /**
+   * Whether the page enhances the chart (`<Chart interactive>`). An enhanced chart's figure holds
+   * the controls the enhancement layer adds, inert until it arrives, so the page does not move;
+   * a chart that is never enhanced leaves them out. Defaults to true, as Enarratio does.
+   */
+  readonly interactive?: boolean | undefined;
+}
+
+/** The options every chart type shares: text, the data table, the id and the pending controls. */
+function figure(spec: ChartSpec, options: RenderOptions) {
   const alt = text(spec.alt);
   if (!alt) throw new Error("Add a description (alt): one sentence on what the chart shows.");
   const title = text(spec.title);
@@ -111,17 +121,18 @@ function figure(spec: ChartSpec) {
     ...(id ? { id } : {}),
     dataTable:
       spec.dataTable === "visually-hidden" ? ("visually-hidden" as const) : ("details" as const),
+    ...(options.interactive === false ? { controls: false } : {}),
   };
 }
 
-async function draw(spec: ChartSpec): Promise<string> {
+async function draw(spec: ChartSpec, options: RenderOptions): Promise<string> {
   const type = (text(spec.type) ?? "bar").toLowerCase();
   if (!CHART_TYPES.includes(type as ChartType)) {
     throw new Error(
       `There is no chart type "${spec.type}". Use one of: ${CHART_TYPES.join(", ")}.`,
     );
   }
-  const common = figure(spec);
+  const common = figure(spec, options);
   const table = typeof spec.data === "string" ? parseTable(spec.data) : tableFromRows(spec.data);
   const x = column(table, spec.x, "x axis");
   const seriesName = text(spec.series) ? column(table, spec.series, "series") : undefined;
@@ -186,9 +197,12 @@ async function draw(spec: ChartSpec): Promise<string> {
  * `enarratio/plot` (Observable Plot and linkedom) only when a page has one. Never throws: a chart
  * that cannot be drawn returns the reason instead, so one mistake cannot break a page.
  */
-export async function renderChart(spec: ChartSpec): Promise<ChartResult> {
+export async function renderChart(
+  spec: ChartSpec,
+  options: RenderOptions = {},
+): Promise<ChartResult> {
   try {
-    return { ok: true, html: await draw(spec) };
+    return { ok: true, html: await draw(spec, options) };
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : String(error) };
   }
