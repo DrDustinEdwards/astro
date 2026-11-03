@@ -8,8 +8,8 @@ export interface Table {
 }
 
 /** Limits that keep one chart's render bounded, whatever an editor pastes. */
-export const MAX_ROWS = 5000;
-export const MAX_COLUMNS = 50;
+const MAX_ROWS = 5000;
+const MAX_COLUMNS = 50;
 
 const NUMBER = /^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i;
 const GROUPED_NUMBER = /^[+-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?$/;
