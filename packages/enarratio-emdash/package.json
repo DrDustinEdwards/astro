@@ -32,7 +32,7 @@
     "README.md"
   ],
   "engines": {
-    "node": ">=22.16"
+    "node": ">=22.22"
   },
   "peerDependencies": {
     "astro": "7.4.4",
