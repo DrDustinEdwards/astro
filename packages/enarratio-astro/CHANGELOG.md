@@ -7,6 +7,10 @@ every such change is listed here.
 
 ## [Unreleased]
 
+### Changed
+
+- Requires Node.js 22.22 or later (was 22.16), the floor Astro 7.4 sets.
+
 ## [0.4.0] - 2026-11-01
 
 ### Changed
