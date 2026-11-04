@@ -46,7 +46,7 @@ const KEYS = new Set([
  * 2026-01-01,820
  * ```
  */
-export function parseChartBlock(source: string): ChartSpec & { readonly interactive: boolean } {
+function parseChartBlock(source: string): ChartSpec & { readonly interactive: boolean } {
   const lines = source.split(/\r?\n/);
   const rule = lines.findIndex((line) => line.trim() === "---");
   if (rule === -1)

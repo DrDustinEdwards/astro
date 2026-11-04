@@ -7,6 +7,11 @@ every such change is listed here.
 
 ## [Unreleased]
 
+### Removed
+
+- `parseChartBlock` is no longer exported from `enarratio-astro/markdown`. It was undocumented; use the
+  `remarkCharts` or `satteriCharts` plugin instead.
+
 ## [0.4.2] - 2026-11-03
 
 ### Changed
