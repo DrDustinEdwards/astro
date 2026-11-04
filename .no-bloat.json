@@ -1,11 +1,10 @@
 {
   "baseline": {
-    "measured_at": "2ed80dd",
+    "measured_at": "23fb694",
     "knip": {
       "Unused files": 5,
       "Unused dependencies": 1,
       "Unused devDependencies": 1,
-      "Unused exports": 2,
       "Duplicate exports": 1
     },
     "jscpd": {
@@ -18,9 +17,9 @@
       "cases": 13
     },
     "comments": {
-      "lines": 183,
-      "code": 933,
-      "percentage": 16.4
+      "lines": 190,
+      "code": 946,
+      "percentage": 16.73
     }
   }
 }
