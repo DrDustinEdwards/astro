@@ -11,7 +11,9 @@
   import { enhance } from "enarratio/enhance";
 
   function run() {
-    for (const chart of document.querySelectorAll<HTMLElement>("[data-enarratio-interactive-chart]")) {
+    for (const chart of document.querySelectorAll<HTMLElement>(
+      "[data-enarratio-interactive-chart]",
+    )) {
       enhance(chart);
     }
   }

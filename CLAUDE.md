@@ -10,7 +10,7 @@ Dustin's packages for Astro and EmDash sites, an npm workspace under `packages/`
 
 ## Commands
 
-- `npm run check`: build, typecheck, Biome lint and tests.
+- `npm run check`: build, typecheck, Oxlint and tests.
 - The demo site check (CI's `site` job) is in README, Development. It needs Node.js 22.23.4 or later.
 
 ## Releases
