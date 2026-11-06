@@ -1,11 +1,8 @@
 {
   "name": "enarratio-emdash-demo",
   "private": true,
-  "type": "module",
   "description": "A small EmDash site that renders every kind of chart: EmDash blocks, the Astro component and Markdown. For screenshots and the packaging check in CI",
-  "emdash": {
-    "seed": "seed/seed.json"
-  },
+  "type": "module",
   "scripts": {
     "setup": "emdash init && emdash seed seed/seed.json --on-conflict=update",
     "build": "astro build",
@@ -21,10 +18,13 @@
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
+  "devDependencies": {
+    "@astrojs/markdown-satteri": "0.4.6"
+  },
   "overrides": {
     "zod": "4.6.7"
   },
-  "devDependencies": {
-    "@astrojs/markdown-satteri": "0.4.6"
+  "emdash": {
+    "seed": "seed/seed.json"
   }
 }
