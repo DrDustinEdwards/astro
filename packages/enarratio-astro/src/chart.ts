@@ -141,9 +141,8 @@ async function draw(spec: ChartSpec, options: RenderOptions): Promise<string> {
   const log = spec.scale === "log" ? ({ yType: "log" } as const) : {};
 
   // Enarratio types its field options by the row type; parsed rows are only known at run time,
-  // so the options are checked here and passed on as plain objects.
-  // biome-ignore lint/suspicious/noExplicitAny: see above
-  type Loose = any;
+  // so every row is a record of cells and the columns are checked here.
+  type Loose = Record<string, Cell>;
 
   switch (type as ChartType) {
     case "bar": {

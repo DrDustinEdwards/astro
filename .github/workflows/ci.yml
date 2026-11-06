@@ -35,7 +35,8 @@ jobs:
       - run: npm audit --audit-level=high
       - run: npm run build
       - run: npm run typecheck
-      - run: npm run lint
+      - name: Lint
+        run: npm run lint
       - run: npm test
       - run: npm pack --dry-run --workspaces
 
