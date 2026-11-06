@@ -14,7 +14,7 @@ Node.js 22.23.4 or later (`.nvmrc` has the version CI uses).
 
 ```sh
 npm ci
-npm run check        # build, typecheck, Biome, unit and render tests for every package
+npm run check        # build, typecheck, Oxlint, unit and render tests for every package
 ```
 
 The tests render the components in Astro's container. `demo/` is an EmDash site with every kind of
