@@ -1,11 +1,11 @@
 {
   "name": "astro-packages",
   "private": true,
-  "type": "module",
   "workspaces": [
     "packages/enarratio-astro",
     "packages/enarratio-emdash"
   ],
+  "type": "module",
   "scripts": {
     "build": "npm run build --workspaces",
     "typecheck": "tsc -p tsconfig.json --noEmit",
