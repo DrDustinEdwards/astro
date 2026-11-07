@@ -7,6 +7,13 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-11-07
+
+### Changed
+
+- The `astro` peer dependency is `>=6` (was exactly `7.4.4`), as the README says. A site on any supported Astro version now installs
+  without a peer conflict; the version tested here stays pinned in the repository's dev dependencies.
+
 ### Removed
 
 - `parseChartBlock` is no longer exported from `enarratio-astro/markdown`. It was undocumented; use the
