@@ -7,6 +7,13 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.4] - 2026-11-07
+
+### Changed
+
+- Escapes the "could not be drawn" note itself instead of using Enarratio's `escapeHtml`, which Enarratio 0.9.0 stops exporting.
+  Output is unchanged, and the package works with Enarratio 0.7.3 and 0.9.0 alike.
+
 ## [0.4.3] - 2026-11-07
 
 ### Changed

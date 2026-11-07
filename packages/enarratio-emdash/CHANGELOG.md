@@ -7,6 +7,12 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.4] - 2026-11-07
+
+### Changed
+
+- Draws with enarratio-astro 0.4.4. No block field changes.
+
 ## [0.4.3] - 2026-11-07
 
 ### Changed
