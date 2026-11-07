@@ -7,6 +7,13 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-11-07
+
+### Changed
+
+- The `astro` peer dependency is `>=6` and `emdash` is `>=1.0.0` (were exactly `7.4.4` and `1.4.0`), as the README says. Draws with
+  enarratio-astro 0.4.3. No block field changes.
+
 ## [0.4.2] - 2026-11-03
 
 ### Changed
