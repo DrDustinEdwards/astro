@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  # A branch's run comes from its pull request; a push runs only on main, so no commit runs twice.
-  push:
-    branches: [main]
+  # No push to main: the merge was checked as its pull request, and nothing deploys from main (release.yml runs
+  # `npm run check` itself before it stages). devkit README, "No second run on main".
   pull_request:
 
 permissions:
