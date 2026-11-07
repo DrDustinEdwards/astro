@@ -7,6 +7,12 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.4.5] - 2026-11-07
+
+### Changed
+
+- Draws with Enarratio 0.9.2, whose "Show data" table scrolls in a keyboard-focusable region on narrow screens (WCAG 2.1.1, 1.4.10).
+
 ## [0.4.4] - 2026-11-07
 
 ### Changed
