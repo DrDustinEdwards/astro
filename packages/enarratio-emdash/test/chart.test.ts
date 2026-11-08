@@ -48,6 +48,7 @@ describe("the Chart block", () => {
       scale: "linear",
       regression: false,
       dataTable: "visually-hidden",
+      lang: "de",
       interactive: true,
     };
     const fields = createPlugin().admin?.portableTextBlocks?.[0]?.fields?.map((f) => f.action_id);
@@ -65,5 +66,6 @@ describe("the Chart block", () => {
     expect(html).toContain("Sales (units)");
     expect(html).toContain("enarratio-visually-hidden");
     expect(html).toContain("data-enarratio-interactive-chart");
+    expect(html).toContain('<figure class="enarratio" id="chart-k1" lang="de"');
   });
 });

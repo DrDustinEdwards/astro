@@ -81,7 +81,7 @@ describe("<Chart>", () => {
     expect(html).not.toContain("<img");
   });
 
-  it("shows why a chart cannot be drawn instead of breaking the page", async () => {
+  it("shows why a chart cannot be drawn, and refuses a bad language tag, instead of breaking the page", async () => {
     const html = await render({
       type: "line",
       data: sales,
@@ -92,5 +92,8 @@ describe("<Chart>", () => {
     expect(html).toContain("enarratio-chart-error");
     expect(html).toContain("There is no column &quot;profit&quot;");
     expect(await render({ data: sales, x: "region" })).toContain("Add a description");
+    const props = { data: sales, x: "region", y: "sales", alt: "Sales by region." };
+    expect(await render({ ...props, lang: "de" })).toContain('<figure class="enarratio" lang="de"');
+    expect(await render({ ...props, lang: "not a tag" })).toContain("enarratio-chart-error");
   });
 });

@@ -7,6 +7,16 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-08
+
+### Added
+
+- A "Language" field on the Chart block (`lang`, optional): the language of the chart's text as a BCP 47 tag, so screen readers switch voice when it differs from the page's. Blocks saved earlier have no value and are unchanged.
+
+### Changed
+
+- Draws with enarratio-astro 0.5.0 and Enarratio 0.10.0.
+
 ## [0.4.5] - 2026-11-07
 
 ### Changed

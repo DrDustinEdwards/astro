@@ -1,6 +1,6 @@
 {
   "name": "enarratio-astro",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "description": "Accessible charts for Astro: a Chart component and charts in Markdown, drawn on the server by Enarratio",
   "keywords": [
     "accessibility",
@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@observablehq/plot": "0.6.17",
-    "enarratio": "0.9.2",
+    "enarratio": "0.10.0",
     "linkedom": "0.18.14"
   },
   "peerDependencies": {

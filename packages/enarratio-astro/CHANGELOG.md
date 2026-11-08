@@ -7,6 +7,16 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-08
+
+### Added
+
+- A `lang` field on `<Chart>`, Markdown `chart` blocks and the spec: the language of the chart's text as a BCP 47 tag, written as the figure's `lang` so a screen reader switches voice (WCAG 3.1.2). A bad tag makes the chart a "could not be drawn" note.
+
+### Changed
+
+- Draws with Enarratio 0.10.0: the range form asks for both ends instead of ignoring a blank one (SC 3.3.1), and density values no longer print as long runs of zeros.
+
 ## [0.4.5] - 2026-11-07
 
 ### Changed

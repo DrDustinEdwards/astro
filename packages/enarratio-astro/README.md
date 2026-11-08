@@ -103,28 +103,29 @@ interactive chart on the page and works with view transitions.
 
 The component's props and a Markdown block's keys are the same:
 
-| Option                 | Used by                  | Notes                                                                                                                       |
-| ---------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `type`                 | all                      | `bar` (default), `line`, `area` (stacked), `scatter` or `heatmap`.                                                          |
-| `data`                 | all                      | The data (component only; in Markdown it follows the dashes). Up to 5000 rows and 50 columns.                               |
-| `alt`                  | all                      | **Required.** What the chart shows and finds, in a sentence. It names the chart for screen readers.                         |
-| `title`, `subtitle`    | all                      | Optional. Shown above the chart.                                                                                            |
-| `caption`, `notes`     | all                      | Optional. The caption, under the chart, is for method or caveats; notes are a smaller line for definitions.                 |
-| `source`, `sourceHref` | all                      | Optional. Where the data came from, linked when `sourceHref` is set, beside a CSV download of the data.                     |
-| `byline`               | all                      | Optional. Who made the chart.                                                                                               |
-| `x`                    | all                      | The column along the x axis. Column names match without regard to case. ISO dates make a time axis in line and area charts. |
-| `y`                    | all                      | The value column. Bar charts count rows when it is missing. For a heatmap, the row column.                                  |
-| `series`               | bar, line, area, scatter | Splits rows into series, told apart by color and by legend, labels or symbols.                                              |
-| `value`                | heatmap                  | The cell value column.                                                                                                      |
-| `xLabel`, `yLabel`     | all                      | Axis labels.                                                                                                                |
-| `xUnit`, `yUnit`       | all                      | Optional. The unit, shown after the axis label (`Sales (units)`) and in the table and summary.                              |
-| `layout`               | bar                      | `stacked` (default) or `grouped`.                                                                                           |
-| `orientation`          | bar                      | `vertical` (default) or `horizontal`.                                                                                       |
-| `scale`                | line, scatter            | `linear` (default) or `log`.                                                                                                |
-| `regression`           | scatter                  | A least-squares line with its 95% band.                                                                                     |
-| `dataTable`            | all                      | `details` (default; behind a "Data table" toggle) or `visually-hidden` (screen readers only).                               |
-| `id`                   | all                      | The figure's id.                                                                                                            |
-| `interactive`          | all                      | Adds the enhancement script. Off by default, so pages stay script-free.                                                     |
+| Option                 | Used by                  | Notes                                                                                                                                                                                    |
+| ---------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                 | all                      | `bar` (default), `line`, `area` (stacked), `scatter` or `heatmap`.                                                                                                                       |
+| `data`                 | all                      | The data (component only; in Markdown it follows the dashes). Up to 5000 rows and 50 columns.                                                                                            |
+| `alt`                  | all                      | **Required.** What the chart shows and finds, in a sentence. It names the chart for screen readers.                                                                                      |
+| `title`, `subtitle`    | all                      | Optional. Shown above the chart.                                                                                                                                                         |
+| `caption`, `notes`     | all                      | Optional. The caption, under the chart, is for method or caveats; notes are a smaller line for definitions.                                                                              |
+| `source`, `sourceHref` | all                      | Optional. Where the data came from, linked when `sourceHref` is set, beside a CSV download of the data.                                                                                  |
+| `byline`               | all                      | Optional. Who made the chart.                                                                                                                                                            |
+| `x`                    | all                      | The column along the x axis. Column names match without regard to case. ISO dates make a time axis in line and area charts.                                                              |
+| `y`                    | all                      | The value column. Bar charts count rows when it is missing. For a heatmap, the row column.                                                                                               |
+| `series`               | bar, line, area, scatter | Splits rows into series, told apart by color and by legend, labels or symbols.                                                                                                           |
+| `value`                | heatmap                  | The cell value column.                                                                                                                                                                   |
+| `xLabel`, `yLabel`     | all                      | Axis labels.                                                                                                                                                                             |
+| `xUnit`, `yUnit`       | all                      | Optional. The unit, shown after the axis label (`Sales (units)`) and in the table and summary.                                                                                           |
+| `layout`               | bar                      | `stacked` (default) or `grouped`.                                                                                                                                                        |
+| `orientation`          | bar                      | `vertical` (default) or `horizontal`.                                                                                                                                                    |
+| `scale`                | line, scatter            | `linear` (default) or `log`.                                                                                                                                                             |
+| `regression`           | scatter                  | A least-squares line with its 95% band.                                                                                                                                                  |
+| `dataTable`            | all                      | `details` (default; behind a "Data table" toggle) or `visually-hidden` (screen readers only).                                                                                            |
+| `lang`                 | all                      | Optional. The language of the chart's text as a BCP 47 tag (`de`), written as the figure's `lang` so screen readers switch voice. Leave it out when the chart is in the page's language. |
+| `id`                   | all                      | The figure's id.                                                                                                                                                                         |
+| `interactive`          | all                      | Adds the enhancement script. Off by default, so pages stay script-free.                                                                                                                  |
 
 A chart that cannot be drawn (a column that is not in the data, text in a number column, a missing
 `alt`) is replaced by a short note saying why, and the reason is logged, so one mistake never
