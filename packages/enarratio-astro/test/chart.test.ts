@@ -93,4 +93,10 @@ describe("<Chart>", () => {
     expect(html).toContain("There is no column &quot;profit&quot;");
     expect(await render({ data: sales, x: "region" })).toContain("Add a description");
   });
+
+  it("writes the chart's language on the figure, and refuses a bad tag", async () => {
+    const props = { data: sales, x: "region", y: "sales", alt: "Sales by region." };
+    expect(await render({ ...props, lang: "de" })).toContain('<figure class="enarratio" lang="de"');
+    expect(await render({ ...props, lang: "not a tag" })).toContain("enarratio-chart-error");
+  });
 });

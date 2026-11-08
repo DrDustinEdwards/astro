@@ -30,6 +30,7 @@ export interface ChartNode {
   readonly scale?: string;
   readonly regression?: boolean;
   readonly dataTable?: string;
+  readonly lang?: string;
   readonly interactive?: boolean;
 }
 
@@ -135,6 +136,12 @@ export const chartBlock: PortableTextBlockConfig = {
       initial_value: "linear",
     },
     { type: "toggle", action_id: "regression", label: "Scatter: regression line with 95% band" },
+    {
+      type: "text_input",
+      action_id: "lang",
+      label:
+        "Language of the chart text, such as de (optional; leave blank for the page's language)",
+    },
     {
       type: "select",
       action_id: "dataTable",

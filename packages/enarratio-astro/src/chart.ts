@@ -56,6 +56,12 @@ export interface ChartSpec {
   readonly regression?: boolean | undefined;
   /** "details" (default): the data table behind a toggle; "visually-hidden": for screen readers only. */
   readonly dataTable?: string | undefined;
+  /**
+   * The language of the chart's text, a BCP 47 tag such as `"de"`, written as the figure's `lang`
+   * so a screen reader switches voice when it differs from the page's. Leave it out when the
+   * chart is in the page's language.
+   */
+  readonly lang?: string | undefined;
   /** The figure's id, reported as `chartId` in the enhancement layer's events. */
   readonly id?: string | undefined;
 }
@@ -108,6 +114,7 @@ function figure(spec: ChartSpec, options: RenderOptions) {
   if (sourceHref && !source)
     throw new Error("Name the source (source) that the link (sourceHref) goes to.");
   const id = text(spec.id)?.replace(/[^A-Za-z0-9_-]/g, "");
+  const lang = text(spec.lang);
   const optional = Object.fromEntries(
     (["subtitle", "caption", "notes", "byline", "xLabel", "yLabel", "xUnit", "yUnit"] as const)
       .map((key) => [key, text(spec[key])])
@@ -119,6 +126,7 @@ function figure(spec: ChartSpec, options: RenderOptions) {
     ...optional,
     ...(source ? { source: sourceHref ? { name: source, href: sourceHref } : source } : {}),
     ...(id ? { id } : {}),
+    ...(lang ? { lang } : {}),
     dataTable:
       spec.dataTable === "visually-hidden" ? ("visually-hidden" as const) : ("details" as const),
     ...(options.interactive === false ? { controls: false } : {}),
