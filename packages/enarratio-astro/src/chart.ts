@@ -54,8 +54,6 @@ export interface ChartSpec {
   readonly scale?: string | undefined;
   /** Scatter: a least-squares line with its 95% band. */
   readonly regression?: boolean | undefined;
-  /** "details" (default): the data table behind a toggle; "visually-hidden": for screen readers only. */
-  readonly dataTable?: string | undefined;
   /**
    * The language of the chart's text, a BCP 47 tag such as `"de"`, written as the figure's `lang`
    * so a screen reader switches voice when it differs from the page's. Leave it out when the
@@ -127,8 +125,6 @@ function figure(spec: ChartSpec, options: RenderOptions) {
     ...(source ? { source: sourceHref ? { name: source, href: sourceHref } : source } : {}),
     ...(id ? { id } : {}),
     ...(lang ? { lang } : {}),
-    dataTable:
-      spec.dataTable === "visually-hidden" ? ("visually-hidden" as const) : ("details" as const),
     ...(options.interactive === false ? { controls: false } : {}),
   };
 }

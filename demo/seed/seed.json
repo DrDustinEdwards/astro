@@ -66,8 +66,7 @@
               "yLabel": "Posts",
               "caption": "Rows are counted: one row per post.",
               "layout": "stacked",
-              "orientation": "vertical",
-              "dataTable": "details"
+              "orientation": "vertical"
             },
             {
               "_type": "enarratioChart",
@@ -80,7 +79,6 @@
               "y": "visitors",
               "series": "site",
               "yLabel": "Visitors",
-              "dataTable": "details",
               "interactive": true
             },
             {
@@ -94,8 +92,7 @@
               "y": "share",
               "series": "source",
               "yLabel": "Share (%)",
-              "caption": "Pasted from a spreadsheet, so the data are tab-separated. Sample data.",
-              "dataTable": "details"
+              "caption": "Pasted from a spreadsheet, so the data are tab-separated. Sample data."
             },
             {
               "_type": "enarratioChart",
@@ -108,8 +105,7 @@
               "y": "response",
               "xLabel": "Dose (mg)",
               "yLabel": "Response",
-              "regression": true,
-              "dataTable": "details"
+              "regression": true
             },
             {
               "_type": "enarratioChart",
@@ -121,7 +117,6 @@
               "x": "time",
               "y": "day",
               "value": "messages",
-              "dataTable": "details",
               "interactive": true
             },
             {
@@ -134,7 +129,6 @@
               "x": "language",
               "y": "repositories",
               "orientation": "horizontal",
-              "dataTable": "details",
               "interactive": true
             },
             {
