@@ -7,6 +7,12 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-11-11
+
+### Fixed
+
+- Draws with enarratio-astro 0.6.1 (Enarratio 0.12.2), whose toolbar icons show on pages with `img-src 'self'`.
+
 ## [0.6.0] - 2026-11-11
 
 ### Changed
