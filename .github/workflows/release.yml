@@ -5,7 +5,11 @@ name: Release
 # has no <package>@<version> tag yet, the job tags that commit, publishes a GitHub release with the
 # version's CHANGELOG section, and stages the package on npm unless npm already has that version (a
 # first version is published by hand). A version tagged earlier whose stage npm refused is staged again, if its package is unchanged
-# since the tag. Run it by hand (Actions > Release > Run workflow) for a
+# since the tag. A version bump that merged while another run was going can be left without a run (a concurrency group keeps
+# only one waiting run and cancels an older pending one, whatever cancel-in-progress says), so each run first tags and
+# releases, on its own commit, every version bump of a package since its fifth newest tag that has no tag yet, oldest first
+# (a catch-up: GitHub release only, nothing is staged on npm for a version that a later one superseded, and no tag is ever
+# moved or replaced). Run it by hand (Actions > Release > Run workflow) for a
 # version that merged untagged.
 #
 # Tagging and staging are one job: a tag made with the workflow's token starts no other workflow
@@ -49,6 +53,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          # The catch-up reads each package.json's version history and its tags.
+          fetch-depth: 0
+          fetch-tags: true
       # No dependency cache in a release build (npm's trusted publishing guide).
       # v7, as Enarratio's release: setup-node v4 exports NODE_AUTH_TOKEN as a placeholder
       # (XXXXX-XXXXX-XXXXX-XXXXX) when no token is given, and the .npmrc it writes for registry-url sends it
@@ -62,6 +69,48 @@ jobs:
         run: npm install --global npm@11.21.0
       - run: npm ci
       - run: npm run check
+      # Catch-up: a version bump that merged without a run of its own (see the top of this file). Only versions older than
+      # the one at HEAD are handled here; the version at HEAD is tagged and staged by the next step, as always.
+      - name: Tag and release skipped versions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          semver='^[0-9]+\.[0-9]+\.[0-9]+$'
+          for dir in packages/enarratio-astro packages/enarratio-emdash; do
+            name="$(node -p "require('./$dir/package.json').name")"
+            head_version="$(node -p "require('./$dir/package.json').version")"
+            tags="$RUNNER_TEMP/tags-$name.txt"
+            git tag -l "$name@*" | sort -V > "$tags"
+            # The bumps since the fifth newest tag; a package with no tag yet is released by hand first.
+            newest="$(tail -n 5 "$tags" | head -n 1)"
+            [ -n "$newest" ] || continue
+            anchor="$(git rev-parse "$newest^{commit}")"
+            if ! git merge-base --is-ancestor "$anchor" HEAD; then
+              echo "::warning::$newest is not on main; skipping the catch-up for $name."
+              continue
+            fi
+            prev="$(git show "$anchor:$dir/package.json" | jq -r .version)"
+            while read -r -u 3 sha; do
+              v="$(git show "$sha:$dir/package.json" 2>/dev/null | jq -r .version 2>/dev/null || true)"
+              printf '%s' "$v" | grep -Eq "$semver" || continue
+              [ "$v" = "$prev" ] && continue
+              prev="$v"
+              [ "$v" = "$head_version" ] && continue
+              grep -qx "$name@$v" "$tags" && continue
+              tag="$name@$v"
+              echo "$tag was never tagged; releasing it on $sha."
+              git show "$sha:$dir/CHANGELOG.md" 2>/dev/null | awk -v v="$v" '
+                index($0, "## [" v "]") == 1 { on = 1; next }
+                on && /^## \[/ { exit }
+                on { print }
+              ' > notes.md || true
+              if [ -s notes.md ]; then
+                gh release create "$tag" --target "$sha" --latest=false --title "$tag" --notes-file notes.md
+              else
+                gh release create "$tag" --target "$sha" --latest=false --title "$tag" --generate-notes
+              fi
+            done 3< <(git rev-list --first-parent --reverse "$anchor..HEAD" -- "$dir/package.json")
+          done
       - name: Tag, release and stage
         id: stage
         env:
