@@ -17,7 +17,7 @@ jobs:
   check:
     # Node 24, which sites run, and 26, the .nvmrc line. Astro needs 22.23.4 or later.
     name: Typecheck, lint, tests, package (Node ${{ matrix.node }})
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     strategy:
       fail-fast: false
       matrix:
@@ -46,7 +46,7 @@ jobs:
     # read the EmDash post, the component page and the Markdown page. The only check that catches a
     # missing export or a .astro file left out of a package (EmDash's "Distributing native plugins").
     name: Build and serve the demo site from the packed packages
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
