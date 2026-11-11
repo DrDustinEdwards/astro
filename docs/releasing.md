@@ -31,5 +31,8 @@ repository `DrDustinEdwards/astro`, workflow `release.yml`), and set publishing 
    release).
 2. Merge the pull request. The Release workflow tags `<package>@x.y.z`, publishes the GitHub
    release with the CHANGELOG section, and stages the package on npm.
+   A bump that merged while another Release run was going can be left without a run (GitHub keeps
+   one waiting run per concurrency group). The next run tags and releases it on its own commit (a
+   GitHub release only; npm is not staged for a version a later one superseded).
 3. Approve it on npmjs.com (Staged Packages tab), or with `npm stage list <package>` and
    `npm stage approve <stage-id>`. When both packages were staged, approve enarratio-astro first.
