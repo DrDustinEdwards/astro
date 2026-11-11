@@ -7,6 +7,12 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.6.2] - 2026-11-11
+
+### Changed
+
+- Draws with Enarratio 0.13.1: charts get a toolbar and fit a phone's drawing.
+
 ## [0.6.1] - 2026-11-11
 
 ### Fixed
