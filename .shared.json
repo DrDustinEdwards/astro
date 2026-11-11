@@ -1,5 +1,8 @@
 {
   "apps": {
     ".": "package"
+  },
+  "copies": {
+    "packages/enarratio-emdash/src/block.ts": "chartBlock here is the EmDash editor's block configuration (its fields and action_ids), not Prelum's ./source chartBlock, which renders a chart directive to HTML"
   }
 }
