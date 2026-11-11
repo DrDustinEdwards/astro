@@ -29,7 +29,6 @@ export interface ChartNode {
   readonly orientation?: string;
   readonly scale?: string;
   readonly regression?: boolean;
-  readonly dataTable?: string;
   readonly lang?: string;
   readonly interactive?: boolean;
 }
@@ -141,16 +140,6 @@ export const chartBlock: PortableTextBlockConfig = {
       action_id: "lang",
       label:
         "Language of the chart text, such as de (optional; leave blank for the page's language)",
-    },
-    {
-      type: "select",
-      action_id: "dataTable",
-      label: "Data table",
-      options: [
-        { label: "Behind a Data table toggle", value: "details" },
-        { label: "Hidden, for screen readers only", value: "visually-hidden" },
-      ],
-      initial_value: "details",
     },
     {
       type: "toggle",

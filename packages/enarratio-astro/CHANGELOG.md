@@ -7,6 +7,16 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-11
+
+### Changed
+
+- Draws with Enarratio 0.12.1. One toolbar sits above the chart: Sound, Range and a Download menu, each an icon and a word on one row. The chart's data table is always in the HTML, visually hidden, for screen readers and AI agents. Charts are quieter: solid bars named on the chart, values at the bar tips, no tick marks, and a pointer card that reads a whole column.
+
+### Removed
+
+- The `dataTable` option on `<Chart>`, Markdown `chart` blocks and the spec, since Enarratio no longer has a visible table to toggle. A Markdown block that still has a `dataTable:` line now fails to build, with a message naming the options; delete the line.
+
 ## [0.5.0] - 2026-11-08
 
 ### Added

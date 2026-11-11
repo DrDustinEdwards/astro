@@ -47,7 +47,6 @@ describe("the Chart block", () => {
       orientation: "horizontal",
       scale: "linear",
       regression: false,
-      dataTable: "visually-hidden",
       lang: "de",
       interactive: true,
     };

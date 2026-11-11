@@ -28,7 +28,6 @@ const KEYS = new Set([
   "orientation",
   "scale",
   "regression",
-  "dataTable",
   "lang",
   "id",
   "interactive",

@@ -7,6 +7,16 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-11
+
+### Changed
+
+- Draws with enarratio-astro 0.6.0 (Enarratio 0.12.1): one toolbar above the chart (Sound, Range, Download), the data table visually hidden for screen readers and AI agents, and the quieter chart design.
+
+### Removed
+
+- The block's Data table field (`dataTable`). Saved charts that have it still render: the stored value is ignored, and every chart's table is visually hidden.
+
 ## [0.5.0] - 2026-11-08
 
 ### Added
