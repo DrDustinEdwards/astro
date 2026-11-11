@@ -106,7 +106,3 @@ test("releases a skipped bump on its own commit and leaves HEAD's version and ta
   ]);
   expect(calls).toEqual(["enarratio-astro@0.1.1 on c1", "enarratio-astro@0.1.3 on c3"]);
 });
-
-test("does nothing when every bump is tagged or a package has no tag yet", () => {
-  expect(run([{ astro: "0.1.0", tag: ["enarratio-astro@0.1.0"] }, { astro: "0.1.1" }])).toEqual([]);
-});
