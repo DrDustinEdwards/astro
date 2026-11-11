@@ -7,6 +7,12 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-11-11
+
+### Fixed
+
+- Draws with Enarratio 0.12.2, whose toolbar icons are inline SVG. In 0.12.1 they were CSS `data:` URLs, which a page with `img-src 'self'` blocks.
+
 ## [0.6.0] - 2026-11-11
 
 ### Changed
