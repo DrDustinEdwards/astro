@@ -95,18 +95,24 @@ export function parseTable(text: string): Table {
     if (seen.has(key)) throw new Error(`Two columns are named "${name}".`);
     seen.add(key);
   }
-  const rows = body.map((record, n) => {
+  body.forEach((record, n) => {
     if (record.slice(columns.length).some((f) => f.trim() !== "")) {
       throw new Error(`Row ${n + 2} has more values than there are columns.`);
     }
-    // No prototype, so a column named "__proto__" is an ordinary field.
-    const row: Record<string, Cell> = Object.create(null);
-    columns.forEach((name, i) => {
-      row[name] = cell(record[i] ?? "");
-    });
-    return row;
   });
-  return { columns, rows };
+  return { columns, rows: body.map((record) => rowOf(columns, (_, i) => cell(record[i] ?? ""))) };
+}
+
+/** One row: each column read by `read`. No prototype, so a column named "__proto__" is an ordinary field. */
+function rowOf(
+  columns: readonly string[],
+  read: (name: string, i: number) => Cell,
+): Record<string, Cell> {
+  const row: Record<string, Cell> = Object.create(null);
+  columns.forEach((name, i) => {
+    row[name] = read(name, i);
+  });
+  return row;
 }
 
 /**
@@ -147,10 +153,5 @@ export function tableFromRows(input: readonly Readonly<Record<string, unknown>>[
   }
   if (columns.length > MAX_COLUMNS)
     throw new Error(`The data has more than ${MAX_COLUMNS} columns.`);
-  const rows = input.map((source) => {
-    const row: Record<string, Cell> = Object.create(null);
-    for (const name of columns) row[name] = value(source[name]);
-    return row;
-  });
-  return { columns, rows };
+  return { columns, rows: input.map((source) => rowOf(columns, (name) => value(source[name]))) };
 }
