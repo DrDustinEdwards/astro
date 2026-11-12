@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "measured_at": "0f7abc9",
+    "measured_at": "333588d",
     "knip": {
       "Unused files": 5,
       "Unused dependencies": 1,
@@ -11,6 +11,10 @@
       "clones": 0,
       "lines": 0,
       "percentage": 0
+    },
+    "shared copies": {
+      "clones": 0,
+      "lines": 0
     },
     "tests": {
       "files": 5,
