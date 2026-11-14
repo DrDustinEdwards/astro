@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "@astrojs/node": "11.1.12",
-    "@astrojs/react": "7.1.2",
+    "@astrojs/react": "7.1.7",
     "@fontsource/schibsted-grotesk": "5.3.0",
-    "astro": "7.4.7",
+    "astro": "7.4.10",
     "capsomer": "github:DrDustinEdwards/capsomer#v0.151.2",
     "emdash": "1.4.0",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
   "devDependencies": {
-    "@astrojs/markdown-satteri": "0.4.6"
+    "@astrojs/markdown-satteri": "0.4.8"
   },
   "overrides": {
     "zod": "4.6.7"

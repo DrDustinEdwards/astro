@@ -17,18 +17,18 @@
     "bloat": "devkit-no-bloat"
   },
   "devDependencies": {
-    "@astrojs/compiler-rs": "0.5.2",
-    "@astrojs/markdown-remark": "7.3.5",
-    "@astrojs/markdown-satteri": "0.4.6",
+    "@astrojs/compiler-rs": "0.5.3",
+    "@astrojs/markdown-remark": "7.3.7",
+    "@astrojs/markdown-satteri": "0.4.8",
     "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.50.1",
     "@types/node": "26.6.6",
-    "astro": "7.4.7",
+    "astro": "7.4.10",
     "emdash": "1.4.0",
     "oxfmt": "0.77.0",
     "oxlint": "1.92.0",
     "oxlint-tsgolint": "7.0.2006",
     "typescript": "7.0.2",
-    "vitest": "5.0.5"
+    "vitest": "5.1.0"
   },
   "overrides": {
     "zod": "4.6.7"
