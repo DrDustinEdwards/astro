@@ -3,8 +3,8 @@
   "extends": ["local>DrDustinEdwards/devkit"],
   "packageRules": [
     {
-      "description": "enarratio peers @observablehq/plot at one exact version; move it when enarratio does",
-      "matchPackageNames": ["@observablehq/plot"],
+      "description": "enarratio peers @observablehq/plot and linkedom at one exact version each; move them when enarratio does",
+      "matchPackageNames": ["@observablehq/plot", "linkedom"],
       "enabled": false
     }
   ]
