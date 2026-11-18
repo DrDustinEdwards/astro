@@ -1,4 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>DrDustinEdwards/devkit"]
+  "extends": ["local>DrDustinEdwards/devkit"],
+  "packageRules": [
+    {
+      "description": "enarratio peers @observablehq/plot at one exact version; move it when enarratio does",
+      "matchPackageNames": ["@observablehq/plot"],
+      "enabled": false
+    }
+  ]
 }
