@@ -42,7 +42,7 @@ jobs:
   release:
     name: Tag, release and stage changed packages
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
       # Lets the job request the OIDC token that npm exchanges for a short-lived publish token, and
