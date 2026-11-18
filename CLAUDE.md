@@ -4,6 +4,7 @@ Dustin's packages for Astro and EmDash sites, an npm workspace under `packages/`
 
 ## Rules
 
+- UI copy: let the layout explain. No eyebrows, restating subtitles, "this page lets you" intros, descriptions under obvious buttons, hints a label already gives, repeated captions or empty-state essays; labels, accessible names, errors, one-way warnings and legal text stay (Dustin, 2026-11-18; Capsid capsid/conventions.md).
 - Tests: keep the minimal set (a few browser tests for flows that must never break, one integration test per real behavior, unit tests only for tricky logic, shared code tested once where it lives), and remove any test that pins design, repeats coverage or has never caught a real mistake, unless it guards a harm that cannot be undone.
 - The EmDash block's field names (`action_id`s in `packages/enarratio-emdash/src/block.ts`) are stored in sites' content. Renaming one breaks saved charts, so it needs a fallback for the old name and a CHANGELOG entry.
 - Keep enarratio-emdash's `enarratio-astro` dependency equal to enarratio-astro's version.
