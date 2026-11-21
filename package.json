@@ -20,7 +20,7 @@
     "@astrojs/compiler-rs": "0.5.3",
     "@astrojs/markdown-remark": "7.3.9",
     "@astrojs/markdown-satteri": "0.4.10",
-    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.55.1",
+    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.55.9",
     "@types/node": "26.6.6",
     "astro": "7.4.12",
     "emdash": "1.5.0",
