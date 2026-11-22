@@ -57,5 +57,3 @@ export function createPlugin(): ResolvedPlugin {
     admin: { portableTextBlocks: [chartBlock] },
   });
 }
-
-export default createPlugin;
