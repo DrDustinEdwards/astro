@@ -1,5 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   // The demo site's own dependencies are listed in demo/package.json, which is not an npm workspace, so Knip would call them unlisted once the demo is read.
+  // demo/ is not a workspace: Astro loads its config, pages and live collections config by convention, so nothing imports them.
+  "entry": ["demo/astro.config.mjs", "demo/src/pages/*.astro", "demo/src/live.config.ts"],
   "ignoreDependencies": ["@astrojs/node", "@fontsource/schibsted-grotesk", "capsomer"]
 }
