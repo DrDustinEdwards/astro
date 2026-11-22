@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "measured_at": "fda2f8f",
+    "measured_at": "eac875f",
     "knip": {
       "files": 5,
       "dependencies": 1,
@@ -18,6 +18,7 @@
       "lines": 0
     },
     "legacy": {},
+    "size": {},
     "tests": {
       "files": 5,
       "cases": 14
