@@ -3,5 +3,14 @@
   // The demo site's own dependencies are listed in demo/package.json, which is not an npm workspace, so Knip would call them unlisted once the demo is read.
   // demo/ is not a workspace: Astro loads its config, pages and live collections config by convention, so nothing imports them.
   "entry": ["demo/astro.config.mjs", "demo/src/pages/*.astro", "demo/src/live.config.ts"],
-  "ignoreDependencies": ["@astrojs/node", "@fontsource/schibsted-grotesk", "capsomer"]
+  "ignoreDependencies": [
+    // The demo site's dependencies, listed in demo/package.json (see the entry comment above).
+    "@astrojs/node",
+    // The demo site's font, loaded by demo/ only.
+    "@fontsource/schibsted-grotesk",
+    // The demo site's design system, loaded by demo/ only.
+    "capsomer",
+    // Imported by enarratio-emdash's Chart.astro frontmatter, which Knip does not read in this workspace.
+    "enarratio-astro"
+  ]
 }
