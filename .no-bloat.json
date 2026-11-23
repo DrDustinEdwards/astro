@@ -1,9 +1,7 @@
 {
   "baseline": {
-    "measured_at": "d160ec2",
-    "knip": {
-      "dependencies": 1
-    },
+    "measured_at": "9b8a13e",
+    "knip": {},
     "jscpd": {
       "clones": 0,
       "lines": 0,
