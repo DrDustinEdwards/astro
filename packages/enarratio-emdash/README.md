@@ -14,7 +14,7 @@ charts. A chart can be made interactive: hover and focus details, keyboard navig
 click-to-filter, from Enarratio's small enhancement script, which is added only to pages that have
 an interactive chart.
 
-Supports EmDash 1.0 or later and Astro 6 or later. Status: 0.x, so options may change before 1.0;
+Supports EmDash 1.0 or later and Astro 7.4.7 or later. Status: 0.x, so options may change before 1.0;
 every change is in the [changelog](https://github.com/DrDustinEdwards/astro/blob/main/packages/enarratio-emdash/CHANGELOG.md).
 
 ## Install

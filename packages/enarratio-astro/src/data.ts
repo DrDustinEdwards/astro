@@ -148,8 +148,15 @@ export function tableFromRows(input: readonly Readonly<Record<string, unknown>>[
   if (input.length === 0) throw new Error("Add data: at least one row.");
   if (input.length > MAX_ROWS) throw new Error(`The data has more than ${MAX_ROWS} rows.`);
   const columns: string[] = [];
+  const seen = new Set<string>();
   for (const row of input) {
-    for (const key of Object.keys(row)) if (!columns.includes(key)) columns.push(key);
+    for (const key of Object.keys(row)) {
+      if (columns.includes(key)) continue;
+      const lower = key.toLowerCase();
+      if (seen.has(lower)) throw new Error(`Two columns are named "${key}".`);
+      seen.add(lower);
+      columns.push(key);
+    }
   }
   if (columns.length > MAX_COLUMNS)
     throw new Error(`The data has more than ${MAX_COLUMNS} columns.`);

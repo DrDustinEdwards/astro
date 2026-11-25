@@ -7,6 +7,16 @@ the saved block's fields; every such change is listed here.
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-25
+
+### Changed
+
+- Needs Astro 7.4.7 or later. Draws with enarratio-astro 0.7.0 (Enarratio 0.17.2).
+
+### Removed
+
+- The unused default export; EmDash loads the named `createPlugin`.
+
 ## [0.6.2] - 2026-11-11
 
 ### Changed

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseTable } from "../src/data.ts";
+import { parseTable, tableFromRows } from "../src/data.ts";
 
 // The parser is the one piece of tricky logic: editors paste from spreadsheets and type CSV by hand.
 describe("parseTable", () => {
@@ -29,5 +29,11 @@ describe("parseTable", () => {
     expect(() => parseTable("only a header")).toThrow(/at least one row/);
     expect(() => parseTable('a,b\n"open,1')).toThrow(/never closed/);
     expect(() => parseTable("a,A\n1,2")).toThrow(/Two columns/);
+  });
+});
+
+describe("tableFromRows", () => {
+  it("refuses two columns that differ only by case, as a CSV does", () => {
+    expect(() => tableFromRows([{ Sales: 1, sales: 2 }])).toThrow('Two columns are named "sales".');
   });
 });

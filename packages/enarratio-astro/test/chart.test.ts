@@ -73,12 +73,14 @@ describe("<Chart>", () => {
     const html = await render({
       data: `name,n\n"${evil.replaceAll('"', '""')}",1`,
       x: "name",
-      y: evil,
+      y: "n",
       alt: evil,
       title: evil,
       caption: evil,
     });
+    expect(html).toContain("<svg");
     expect(html).not.toContain("<img");
+    expect(html).toContain("&lt;img");
   });
 
   it("shows why a chart cannot be drawn, and refuses a bad language tag, instead of breaking the page", async () => {

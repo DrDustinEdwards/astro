@@ -7,6 +7,18 @@ every such change is listed here.
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-25
+
+### Changed
+
+- Needs Astro 7.4.7 or later (the security release); Astro 6 is no longer supported.
+- Draws with Enarratio 0.17.2, Observable Plot 0.6.19 and linkedom 0.18.15.
+- A chart that cannot be drawn is a plain paragraph, without `role="note"`.
+
+### Fixed
+
+- Rows given as objects with two columns that differ only by case are refused, as in CSV, instead of plotting one and dropping the other.
+
 ## [0.6.2] - 2026-11-11
 
 ### Changed
