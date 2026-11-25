@@ -10,7 +10,7 @@ scatter (with an optional regression line and 95% band) and heatmap charts. A ch
 interactive (hover and focus details, keyboard navigation, click-to-filter) with Enarratio's small
 enhancement script, which is added only to pages that ask for it.
 
-Supports Astro 6 or later. Status: 0.x, so options may change before 1.0; every change is in the
+Supports Astro 7.4.7 or later. Status: 0.x, so options may change before 1.0; every change is in the
 [changelog](https://github.com/DrDustinEdwards/astro/blob/main/packages/enarratio-astro/CHANGELOG.md). For EmDash sites,
 [enarratio-emdash](https://github.com/DrDustinEdwards/astro/tree/main/packages/enarratio-emdash#readme) adds the same charts as a block
 in the editor.
@@ -87,7 +87,7 @@ export default defineConfig({
 });
 ```
 
-With remark (Astro 6, or Astro 7's unified processor):
+With remark (Astro 7's unified processor):
 
 ```js
 import { remarkCharts } from "enarratio-astro/markdown";

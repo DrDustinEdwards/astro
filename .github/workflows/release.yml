@@ -43,6 +43,7 @@ jobs:
     name: Tag, release and stage changed packages
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     permissions:
       contents: write
       # Lets the job request the OIDC token that npm exchanges for a short-lived publish token, and
@@ -67,7 +68,8 @@ jobs:
           package-manager-cache: false
       - name: Install the npm CLI that supports staged publishing
         run: npm install --global npm@11.21.0
-      - run: npm ci
+      # No lifecycle scripts while the job can request the OIDC token: nothing here needs one.
+      - run: npm ci --ignore-scripts
       - run: npm run check
       # Catch-up: a version bump that merged without a run of its own (see the top of this file). Only versions older than
       # the one at HEAD are handled here; the version at HEAD is tagged and staged by the next step, as always.

@@ -19,7 +19,7 @@ function escapeText(value: string): string {
  */
 export function chartMarkup(result: ChartResult, interactive: boolean): string {
   if (!result.ok) {
-    return `<p class="enarratio-chart-error" role="note">This chart could not be drawn. ${escapeText(result.error)}</p>`;
+    return `<p class="enarratio-chart-error">This chart could not be drawn. ${escapeText(result.error)}</p>`;
   }
   const mark = interactive ? " data-enarratio-interactive-chart" : "";
   return `<div class="enarratio-chart"${mark}>${result.html}</div>`;
