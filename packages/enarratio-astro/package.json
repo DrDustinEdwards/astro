@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@observablehq/plot": "0.6.19",
-    "enarratio": "0.17.2",
+    "enarratio": "0.17.3",
     "linkedom": "0.18.15"
   },
   "peerDependencies": {
